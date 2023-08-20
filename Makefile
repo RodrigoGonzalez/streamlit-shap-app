@@ -168,6 +168,8 @@ clean-docs: ## remove output files from mkdocs
 run:  ## Run the application
 	poetry run streamlit run src/shap_app/app.py
 
+.PHONY: run
+
 # =============================================================================
 # BUILD & RELEASE
 # =============================================================================
