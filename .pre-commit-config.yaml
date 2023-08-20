@@ -1,0 +1,145 @@
+exclude: ^(docs|scripts|src/project_9_ml_components/sample_project|src/project_13_ml_ops/sample_package|src/project_2_time-series_ai_investor/sample_project)/
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+  - id: check-ast
+  - id: check-added-large-files
+    args: [--maxkb=700]
+  - id: check-merge-conflict
+  - id: check-case-conflict
+  - id: check-docstring-first
+  - id: check-yaml
+  - id: debug-statements
+  - id: pretty-format-json
+    args: [--autofix, --no-sort-keys]
+  - id: check-json
+#  - id: name-tests-test
+#    args: [--pytest-test-first]
+  - id: trailing-whitespace
+  - id: mixed-line-ending
+  - id: end-of-file-fixer
+
+- repo: https://github.com/sondrelg/pep585-upgrade
+  rev: v1.0
+  hooks:
+  - id: upgrade-type-hints
+    name: upgrade-type-hints
+    args: [--futures=true]
+    stages: [commit, manual, push]
+
+
+- repo: https://github.com/shellcheck-py/shellcheck-py
+  rev: v0.9.0.5
+  hooks:
+  - id: shellcheck
+    name: shellcheck
+    args: [--external-sources]
+    stages: [commit, manual, push]
+
+
+- repo: local
+  hooks:
+  - id: autoflake
+    name: autoflake
+    entry: poetry run autoflake -r -i
+    args: [--remove-all-unused-imports, --remove-unused-variables]
+    language: system
+    types: [python]
+    stages: [commit, manual, push]
+
+  - id: isort
+    name: isort-format
+    language: system
+    entry: poetry run isort
+    args: [--settings-path=pyproject.toml]
+    types: [python]
+    stages: [commit, manual]
+
+  - id: isort-check
+    name: isort-lint
+    entry: poetry run isort
+    args: [--settings-path=pyproject.toml, --check-only]
+    language: system
+    types: [python]
+    stages: [push]
+
+  - id: black
+    name: black-format
+    entry: poetry run black src tests
+    args: [--config=pyproject.toml]
+    language: system
+    types: [python]
+    stages: [commit, manual]
+
+  - id: black-check
+    name: black-lint
+    entry: poetry run black src tests
+    args: [--config=pyproject.toml, --check]
+    language: system
+    types: [python]
+    stages: [push]
+
+  - id: pyupgrade
+    name: pyupgrade
+    entry: poetry run pyupgrade
+    args: [--py310-plus]
+    language: system
+    types: [python]
+    stages: [commit, manual]
+
+  - id: flake8
+    name: flake8
+    entry: poetry run flake8 src tests
+    args: [--config=.flake8]
+    language: system
+    types: [python]
+    stages: [commit, manual, push]
+
+#  - id: mypy
+#    name: mypy
+#    entry: poetry run mypy --install-types --non-interactive --sqlite-cache src
+#    args: [--config-file=pyproject.toml, --cache-dir=.mypy_cache, --show-error-codes]
+#    language: system
+#    pass_filenames: false
+#    require_serial: false
+#    verbose: true
+#    types: [python]
+#    stages: [commit, manual, push]
+
+
+- repo: https://github.com/gvanderest/pylama-pre-commit
+  rev: 0.1.2
+  hooks:
+  - id: pylama
+    name: pylama
+    args: [--verbose, --options=pylama.ini, --max-complexity=20, --concurrent]
+    stages: [commit, manual, push]
+
+
+#- repo: https://github.com/pre-commit/mirrors-prettier
+#  rev: v2.1.2
+#  hooks:
+#    - id: prettier
+#      args: [--single-quote]
+#      stages: [commit, manual]
+#      files: "\\.(\
+#        css|less|scss\
+#        |html\
+#        |js|jsx\
+#        |json\
+#        |ts|tsx\
+#        |vue\
+#        )$"
+#      additional_dependencies:
+#      -   prettier@2.1.2
+#      -   '@prettier/plugin-xml@0.12.0'
+
+- repo: https://github.com/commitizen-tools/commitizen
+  rev: 3.5.2
+  hooks:
+#  - id: commitizen
+#    stages: [push]
+  - id: commitizen-branch
+    stages: [push]
+#    additional_dependencies: [cz-github-jira-conventional]

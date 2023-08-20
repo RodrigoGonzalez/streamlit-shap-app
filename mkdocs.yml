@@ -1,0 +1,26 @@
+site_name: Python Project
+
+docs_dir: docs
+
+theme:
+  name: "material"
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.instant
+
+plugins:
+  - search:
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [ src ]
+  - render_swagger:
+      title: API Reference
+
+nav: [ ]
+
+repo_url: https://github.com/RodrigoGonzalez/project
+
+# to navigate with `/site` content correctly
+use_directory_urls: false
