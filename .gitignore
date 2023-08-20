@@ -208,3 +208,6 @@ tmp/*
 
 # But do track the `tmp` directory itself, if they exist
 !tmp/.gitkeep
+
+# Ignore catboost cache
+catboost_info/

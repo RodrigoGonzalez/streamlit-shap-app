@@ -1,5 +1,5 @@
 # =============================================================================
-# MAKEFILE FOR portfolio_projects
+# MAKEFILE FOR streamlit-shap-app
 # =============================================================================
 #
 # Partially inspired by https://github.com/RodrigoGonzalez/portfolio-projects
