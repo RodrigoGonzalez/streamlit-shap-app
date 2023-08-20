@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import shap
 import streamlit as st
@@ -9,7 +10,22 @@ plt.style.use("ggplot")
 
 
 def visualize_data_introduction() -> None:
-    """Visualize data introduction"""
+    """
+    Provide an introduction to the data visualization process.
+
+    This function displays an introductory Markdown text that explains the
+    importance and purpose of data visualization in the exploratory phase of
+    data analysis. It emphasizes the role of visualization in identifying
+    patterns, anomalies, trends, correlations, and outliers in the dataset,
+    which can guide subsequent modeling and validate the appropriateness of
+    the data for the chosen model.
+
+    Returns
+    -------
+    None
+        This function does not return any value. It displays an introductory
+        text about data visualization.
+    """
     st.markdown(
         "Here we delve into the exploratory phase of our data analysis. "
         "This crucial step involves a deep dive into the dataset, where we uncover "
@@ -30,11 +46,24 @@ def raw_dataset_insights(dataset: pd.DataFrame) -> None:
     """
     Display dataset summary statistics and data dictionary.
 
+    This function takes a panda's DataFrame as input and generates a histogram
+    for each column in the DataFrame. The number of bins for the histogram is
+    determined by the square root of the rows in the DataFrame. The histograms
+    provide a visual representation of the data distribution for each feature
+    in the dataset.
+
     Parameters
     ----------
     dataset : pd.DataFrame
-        Dataset.
+        The dataset for which the histograms are to be generated. Each column
+        represents a feature and each row represents an observation.
+
+    Returns
+    -------
+    None
+        This function does not return any value. It generates and displays
+        histograms for each feature in the dataset.
     """
-    # TODO: Set number of bins based on number of observations
-    dataset.hist(bins=50, figsize=(12, 12))
+    num_bins = int(np.sqrt(dataset.shape[0]))
+    dataset.hist(bins=num_bins, figsize=(12, 12))
     st_shap(plot=None)
