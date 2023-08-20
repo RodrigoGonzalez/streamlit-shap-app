@@ -42,6 +42,7 @@ setup: poetry-install pre-commit-install  ## Setup Virtual Environment
     poetry-install:  ## Install dependencies using Poetry
 		poetry env use $(PYTHON_INTERPRETER)
 		poetry install
+		poetry self add poetry-plugin-up
 
     pre-commit-install:  ## Install pre-commit hooks
 		poetry run pre-commit install
@@ -60,13 +61,17 @@ update-deps: pip-upgrade poetry-update pre-commit-autoupdate  ## Update dependen
     pre-commit-autoupdate:  ## Update pre-commit hooks
 		poetry run pre-commit autoupdate -c .pre-commit-config.yaml
 
+upgrade-deps: update-deps ## Upgrade dependencies to the latest versions
+	# https://github.com/MousaZeidBaker/poetry-plugin-up
+	poetry up
+
 local: setup update-deps  ## Locally install the package
 	portfolio-projects --help
 
 activate:  ## Activate the virtual environment
 	poetry shell
 
-.PHONY: update-deps local pip-upgrade poetry-update pre-commit-autoupdate
+.PHONY: update-deps upgrade-deps local pip-upgrade poetry-update pre-commit-autoupdate
 
 # =============================================================================
 # DEVELOPMENT
