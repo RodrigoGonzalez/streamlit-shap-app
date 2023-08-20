@@ -161,6 +161,16 @@ clean-docs: ## remove output files from mkdocs
 .PHONY: docs-serve docs-build docs-deploy clean-docs
 
 # =============================================================================
+# RUN APPLICATION
+# =============================================================================
+
+##@ Run Application
+run:  ## Run the application
+	poetry run streamlit run src/shap_app/app.py
+
+.PHONY: run
+
+# =============================================================================
 # BUILD & RELEASE
 # =============================================================================
 

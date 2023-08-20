@@ -118,11 +118,7 @@ st.markdown("---")
 st.markdown("## SHAP (SHapley Additive exPlanations)")
 main_shap_description()
 st.markdown("## Visualizing SHAP Values using Tree SHAP")
-main_shap_plot(
-    explainer=st.session_state["explainer"],
-    shap_values=st.session_state["shap_values"],
-    dataset=st.session_state["X"],
-)
+main_shap_plot()
 st.markdown("---")
 
 

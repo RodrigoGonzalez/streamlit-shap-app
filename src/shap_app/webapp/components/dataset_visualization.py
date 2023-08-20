@@ -46,7 +46,7 @@ def raw_dataset_insights(dataset: pd.DataFrame) -> None:
     """
     Display dataset summary statistics and data dictionary.
 
-    This function takes a panda's DataFrame as input and generates a histogram
+    This function takes a pandas' DataFrame as input and generates a histogram
     for each column in the DataFrame. The number of bins for the histogram is
     determined by the square root of the rows in the DataFrame. The histograms
     provide a visual representation of the data distribution for each feature

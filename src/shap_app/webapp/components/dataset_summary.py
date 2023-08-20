@@ -11,7 +11,7 @@ def raw_dataset_summary(dataset: pd.DataFrame) -> None:
     """
     Display the summary statistics and data dictionary of the given dataset.
 
-    This function takes a pandas DataFrame as input and displays the summary
+    This function takes a pandas' DataFrame as input and displays the summary
     statistics and data dictionary of the dataset. The summary statistics
     include count, mean, standard deviation, minimum, 25th percentile, median,
     75th percentile, and maximum of each feature in the dataset. The data
