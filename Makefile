@@ -55,6 +55,7 @@ update-deps: pip-upgrade poetry-update pre-commit-autoupdate  ## Update dependen
 		poetry run pip install --upgrade pip
 
     poetry-update:  ## Update Poetry dependencies
+		poetry self update
 		poetry update
 		poetry lock
 
@@ -100,73 +101,6 @@ bump:  ## Bump version and update changelog
 	@git push --follow-tags
 
 .PHONY: pre-commit pre-commit-tool commit bump
-
-
-# =============================================================================
-# FORMATTING
-# =============================================================================
-
-##@ Formatting
-
-format: add-all format-black format-isort format-autoflake format-pyupgrade  ## Run all formatters
-
-format-black: ## Run black (code formatter)
-	$(MAKE) pre-commit-tool TOOL=black
-
-format-isort: ## Run isort (import formatter)
-	$(MAKE) pre-commit-tool TOOL=isort
-
-format-autoflake: ## Run autoflake (remove unused imports)
-	$(MAKE) pre-commit-tool TOOL=autoflake
-
-format-pyupgrade: ## Run pyupgrade (upgrade python syntax)
-	$(MAKE) pre-commit-tool TOOL=pyupgrade
-
-.PHONY: format format-black format-isort format-autoflake format-pyupgrade
-
-# =============================================================================
-# LINTING
-# =============================================================================
-
-##@ Linting
-
-lint: lint-black lint-isort lint-flake8 lint-mypy ## Run all linters
-
-.PHONY: lint lint-black lint-isort lint-flake8 lint-mypy
-
-lint-black:  ## Run black in linting mode
-	$(MAKE) pre-commit-tool TOOL=black-check
-
-lint-isort:  ## Run isort in linting mode
-	$(MAKE) pre-commit-tool TOOL=isort-check
-
-lint-flake8:  ## Run flake8 (linter)
-	$(MAKE) pre-commit-tool TOOL=flake8
-
-lint-mypy:  ## Run mypy (static-type checker)
-	$(MAKE) pre-commit-tool TOOL=mypy
-
-actions-lint: actions-lint-black actions-lint-isort actions-lint-flake8  ## Run all linters for GitHub Actions
-	@echo "+ $@"
-
-actions-lint-black:  ## Run black in linting mode for GitHub Actions
-	@echo "+ $@"
-	@poetry run black --check --config=pyproject.toml src tests
-
-actions-lint-isort:  ## Run isort in linting mode for GitHub Actions
-	@echo "+ $@"
-	@poetry run isort --settings-path=pyproject.toml --check-only src tests
-
-actions-lint-flake8:  ## Run flake8 (linter) for GitHub Actions
-	@echo "+ $@"
-	@poetry run flake8 --config=.flake8 src tests
-
-actions-lint-mypy:  ## Run mypy (static-type checker) for GitHub Actions
-	@echo "+ $@"
-	@poetry run mypy --install-types --non-interactive --config-file=pyproject.toml --cache-dir=.mypy_cache --show-error-codes src
-
-.PHONY: actions-lint-black actions-lint-isort actions-lint-flake8 actions-lint-mypy
-
 
 # =============================================================================
 # TESTING
@@ -250,34 +184,6 @@ deploy:  ## Deploy to PyPI
 # GIT
 # -----------------------------------------------------------------------------
 
-##@ Git diff Shortcuts
-
-diff-name:  ## Show diff name
-	@ echo "Running git diff --name-only command:\n" && \
- 	echo "Files changed:"
-	@ git --no-pager diff --name-only $(shell git merge-base origin/main HEAD)
-
-diff-stat:  ## Show diff stat
-	@ echo "Running git diff --stat command:\n" && \
- 	echo " Files Changed 	| Lines added "
-	@ git --no-pager diff --stat $(shell git merge-base origin/main HEAD)
-
-diff-num:  ## Show diff numstat
-	@ echo "Running git diff --numstat command:\n" && \
- 	echo "Lines added | Lines removed | File"
-	@ git --no-pager diff --numstat $(shell git merge-base origin/main HEAD)
-
-diff-summary:  ## Show diff numstat
-	@ echo "Running git diff --summary command:\n"
-	@ git --no-pager diff --summary $(shell git merge-base origin/main HEAD)
-
-list-branches:  ## List branches
-	@ echo "Running git branch --sort=-committerdate:\n"
-	@ git --no-pager branch --sort=-committerdate
-
-
-.PHONY: diff-name diff-stat diff-num list-branches
-
 ##@ Git Shortcuts
 
 git-commit-num:
@@ -313,48 +219,6 @@ new-feat-branch: check-branch-name  ## Create a new feature branch
 
 .PHONY: check-branch-name new-branch new-feat-branch
 
-# -----------------------------------------------------------------------------
-# Docker
-# -----------------------------------------------------------------------------
-
-##@ Docker Shortcuts
-
-docker-version:  ## Show docker version
-	@echo "+ $@"
-	@docker --version
-
-up:  ## Start current docker-compose
-	@echo "+ $@"
-	@docker-compose up -d --remove-orphans
-
-up-build:  ## Start current docker-compose
-	@echo "+ $@"
-	@docker-compose up -d --remove-orphans --build
-
-down:  ## Stop docker-compose
-	@echo "+ $@"
-	@docker-compose down
-
-
-#wait-for-services:
-#	@echo "+ $@"
-#	@./scripts/wait-for-services.sh
-#
-#```
-##!/bin/bash
-#
-#while ! mysqladmin ping -h database --silent; do
-#    sleep 1
-#    echo "Waiting for database to be ready..."
-#done
-#```
-#
-#long-check: down up wait-for-services ## Run long check (rebuilds containers)
-#	@echo "+ $@"
-#	@docker-compose exec backend ./scripts/test.sh -vvvvsra --doctest-modules
-
-.PHONY: docker-version up down
-
 # =============================================================================
 # ADDITIONAL
 # =============================================================================
@@ -372,4 +236,6 @@ help:  ## Display this help
 	echo
 	echo " The following commands can be run for "$(PROJECTNAME)":"
 	echo
-	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
+	awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_-]+:.*?##/ \
+	{ printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' \
+	$(MAKEFILE_LIST)

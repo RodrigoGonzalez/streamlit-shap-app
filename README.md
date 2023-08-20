@@ -1,8 +1,9 @@
-# Title
+# Streamlit SHAP App
 
 ## Introduction
 
-Key Topics To Include for Each Project
+This app demonstrates how to use the [SHAP](https://shap.readthedocs.io/en/latest/index.html)
+library to explain models.
 
 ## Summary
 
@@ -38,15 +39,6 @@ the dependencies, run the following command:
 pip install -r requirements.txt
 ```
 
-### Docker
-
-To build the docker image, run the following command:
-
-```bash
-docker build -t <image-name> .
-```
-
-
 ## Results
 Highlight the results you got from your model or system and why you think this
 happened. Were there any outliers or anomalies in your data that affected the
@@ -61,17 +53,23 @@ this project?
 ## Relevant Literature and Links
 Many of the ideas implemented in this repository were first detailed in the following papers:
 
-1. [Auto-Encoding Variational Bayes](https://arxiv.org/abs/1312.6114)
-2. [3FabRec: Fast Few-shot Face alignment by Reconstruction](https://arxiv.org/abs/1911.10448)
-3. [DARLA: Improving Zero-Shot Transfer in Reinforcement Learning](https://arxiv.org/abs/1707.08475)
-4. [Generative Adversarial Networks](https://arxiv.org/abs/1406.2661)
-5. [Progressive Growing of GANs for Improved Quality, Stability, and Variation](https://arxiv.org/abs/1710.10196)
-6. [beta-VAE: Learning Basic Visual Concepts with a Constrained Variational Framework](https://openreview.net/forum?id=Sy2fzU9gl)
-7. [Towards Photographic Image Manipulation with Balanced Growing of Generative Autoencoders](https://arxiv.org/abs/1904.06145)
-8. [Understanding disentangling in β-VAE](https://arxiv.org/abs/1804.03599)
-9. [Analyzing and Improving the Image Quality of StyleGAN](https://arxiv.org/abs/1912.04958)
-10. [Instance Normalization: The Missing Ingredient for Fast Stylization](https://arxiv.org/abs/1607.08022)
-11. [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)
+1. [A Unified Approach to Interpreting Model Predictions](https://arxiv.org/abs/1705.07874)
+2. [Consistent Individualized Feature Attribution for Tree Ensembles](https://arxiv.org/abs/1802.03888)
+3. [Explainable AI for Trees: From Local Explanations to Global Understanding](https://arxiv.org/abs/1905.04610)
+4. [Fairness-aware Explainable AI: A Decision-Making Perspective](https://arxiv.org/abs/2006.11458)
+5. [Interpretable Machine Learning: Definitions, Methods, and Applications](https://arxiv.org/abs/1901.04592)
+6. [SHAP-Sp: A Data-efficient Algorithm for Model Interpretation](https://arxiv.org/abs/2002.03222)
+7. [On the Robustness of Interpretability Methods](https://arxiv.org/abs/2001.07538)
+8. [Towards Accurate Model Interpretability by Training Interpretable Models](https://arxiv.org/abs/2006.16234)
+9. [Understanding Black-box Predictions via Influence Functions](https://arxiv.org/abs/1703.04730)
+10. [From Local Explanations to Global Understanding with Explainable AI for Trees](https://arxiv.org/abs/1905.04610)
+11. [GitHub - slundberg/shap](https://github.com/slundberg/shap)
+12. [Interpretable Machine Learning with SHAP](https://christophm.github.io/interpretable-ml-book/shap.html)
+13. [Understanding SHAP Values](https://towardsdatascience.com/understanding-shap-values-1c1b7a0e57b7)
+14. [Kaggle - Machine Learning Explainability](https://www.kaggle.com/learn/machine-learning-explainability)
+15. [Medium - SHAP in Practice](https://medium.com/@gabrieltseng/interpreting-complex-models-with-shap-values-1c187db6ec83)
+16. [Azure Machine Learning Interpretability](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-machine-learning-interpretability)
+
 
 ## Contributing
 
@@ -79,9 +77,4 @@ Issues and pull requests are welcome.
 
 ## License
 
-All code in this repository is released under [MIT](LICENSE-MIT).
-
-## Contact
-
-If you liked what you saw, want to have a chat with me about the portfolio,
-work opportunities, or collaboration, shoot an email at r@rodrigo-gonzalez.com.
+All code in this repository is released under [MIT](LICENSE).

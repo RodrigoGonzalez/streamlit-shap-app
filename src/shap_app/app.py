@@ -147,12 +147,12 @@ st.markdown("---")
 st.markdown("[Back to Top](#introduction-to-explainable-ai)")
 
 
-# Other explainers
-st.markdown("## LIME (Local Interpretable Model-agnostic Explanations)")
-st.markdown("Coming Soon")
-st.markdown("---")
-
-
-st.markdown("## Partial Dependence Plots")
-st.markdown("Coming Soon")
-st.markdown("---")
+# # Other explainers
+# st.markdown("## LIME (Local Interpretable Model-agnostic Explanations)")
+# st.markdown("Coming Soon")
+# st.markdown("---")
+#
+#
+# st.markdown("## Partial Dependence Plots")
+# st.markdown("Coming Soon")
+# st.markdown("---")
