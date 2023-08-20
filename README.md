@@ -21,6 +21,9 @@ built your project and why you chose those particular tools.
 
 ## Running Code
 
+```bash
+streamlit run src/shap_app/app.py
+```
 
 ### Installation
 
