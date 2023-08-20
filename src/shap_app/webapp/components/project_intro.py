@@ -3,7 +3,28 @@ import streamlit as st
 
 
 def dataset_introduction(data_source: str = "boston_housing") -> None:
-    """Display dataset introduction"""
+    """
+    Display the introduction of the selected dataset.
+
+    This function displays the introduction of the dataset selected by the user.
+    The introduction includes a brief description of the dataset, its features,
+    limitations, ethical considerations, and its usefulness for the project.
+
+    Parameters
+    ----------
+    data_source : str, optional
+        The name of the dataset to load. If not provided, the Boston Housing
+        dataset is loaded by default.
+
+    Raises
+    ------
+    ValueError
+        If the dataset name provided by the user is not found.
+
+    Returns
+    -------
+    None
+    """
     if data_source == "boston_housing":
         boston_housing_dataset_introduction()
     elif data_source == "california_housing":
@@ -24,7 +45,18 @@ def dataset_introduction(data_source: str = "boston_housing") -> None:
 
 
 def boston_housing_dataset_introduction() -> None:
-    """Display dataset introduction"""
+    """
+    Display the introduction for the Boston Housing dataset.
+
+    This function displays a detailed introduction of the Boston Housing
+    dataset. The introduction includes a comprehensive description of the
+    dataset, its features, limitations, and ethical considerations. It also
+    explains the usefulness of this dataset for the project.
+
+    Returns
+    -------
+    None
+    """
     st.markdown("## Boston House Price Predictions")
     st.markdown(
         """
@@ -89,5 +121,16 @@ def boston_housing_dataset_introduction() -> None:
 
 
 def california_housing_dataset_introduction() -> None:
-    """Display dataset introduction"""
+    """
+    Display the introduction for the California Housing dataset.
+
+    This function displays a detailed introduction of the California Housing
+    dataset. The introduction includes a comprehensive description of the
+    dataset, its features, limitations, and ethical considerations. It also
+    explains the usefulness of this dataset for the project.
+
+    Returns
+    -------
+    None
+    """
     st.markdown("## California Housing Prices")

@@ -13,14 +13,46 @@ F = TypeVar("F", bound=Callable[..., Any])
 
 
 def st_typed_cache_resource(func: F) -> F:
-    """Streamlit cache resource decorator for typed functions."""
+    """
+    This is a decorator for Streamlit cache resource. It is used to cache the
+    output of a function that is computationally expensive to recreate each
+    time the script is run. The function must be a typed function.
+
+    Implemented to make MyPy happy.
+
+    Parameters
+    ----------
+    func : Callable[..., Any]
+        The function whose output needs to be cached.
+
+    Returns
+    -------
+    Callable[..., Any]
+        The same function with caching enabled.
+    """
     from streamlit import cache_resource
 
     return cast(F, cache_resource(func))
 
 
 def st_typed_cache_data(func: F) -> F:
-    """Streamlit cache data decorator for typed functions."""
+    """
+    This is a decorator for Streamlit cache data. It is used to cache the
+    output of a function that is computationally expensive to recreate each
+    time the script is run. The function must be a typed function.
+
+    Implemented to make MyPy happy.
+
+    Parameters
+    ----------
+    func : Callable[..., Any]
+        The function whose output needs to be cached.
+
+    Returns
+    -------
+    Callable[..., Any]
+        The same function with caching enabled.
+    """
     from streamlit import cache_data
 
     return cast(F, cache_data(func))
@@ -29,16 +61,34 @@ def st_typed_cache_data(func: F) -> F:
 @st_typed_cache_resource
 def load_model(model_path: str) -> object:
     """
+    Load a model from a pickle file.
+
+    This function uses the Python pickle module to deserialize a model object
+    from a file. The file is expected to be a pickle file, which is a binary
+    file format used by Python for serializing and deserializing Python object
+    structures.
+
+    The function is decorated with the `st_typed_cache_resource` decorator,
+    which caches the output of the function in Streamlit. This is useful for
+    computationally expensive operations, such as loading a large model, as it
+    allows the result to be stored and reused across multiple runs of the
+    script, rather than being recomputed each time.
 
     Parameters
     ----------
     model_path : str
-        Path to the pickle file.
+        The path to the pickle file containing the serialized model. This
+        should be a string representing a valid file path on the system where
+        the script is being run.
 
     Returns
     -------
     object
-        The deserialized model object.
+        The deserialized model object. The exact type of this object will
+        depend on the type of the model that was serialized into the pickle
+        file. It could be any type of Python object that is capable of being
+        pickled, but in the context of this function it is expected to be a
+        machine learning model object of some kind.
     """
     return pickle.load(open(model_path, "rb"))
 
@@ -46,12 +96,25 @@ def load_model(model_path: str) -> object:
 @st_typed_cache_data
 def load_data(dataset_name: str = "boston_housing") -> pd.DataFrame:
     """
-    Loads and returns the Boston dataset using the shap library.
+    Load a dataset using the shap library. By default, the Boston Housing
+    dataset is loaded.
+
+    This function is decorated with the `st_typed_cache_data` decorator, which
+    caches the output of the function in Streamlit. This is useful for
+    computationally expensive operations, such as loading a large dataset, as
+    it allows the result to be stored and reused across multiple runs of the
+    script, rather than being recomputed each time.
+
+    Parameters
+    ----------
+    dataset_name : str, optional
+        The name of the dataset to load. If not provided, the Boston Housing
+        dataset is loaded by default.
 
     Returns
     -------
-    tuple of numpy arrays
-        The Boston dataset.
+    pd.DataFrame
+        The loaded dataset as a Panda's DataFrame.
     """
     # data = load_full_dataset(dataset_name)
     # data.drop("TARGET", axis=1, inplace=True)

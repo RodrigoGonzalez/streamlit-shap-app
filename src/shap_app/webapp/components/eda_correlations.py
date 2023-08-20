@@ -8,7 +8,18 @@ from streamlit_shap import st_shap
 
 
 def feature_analysis() -> None:
-    """Feature analysis section of the EDA page."""
+    """
+    This function generates the feature analysis section of the EDA page.
+
+    The feature analysis section provides an initial examination of the
+    dataset, formulating certain assumptions and hypotheses about the
+    relationships between different features. These hypotheses are then
+    empirically tested through various analytical procedures.
+
+    Returns
+    -------
+    None
+    """
     # TODO: Add data_source: str | None = "boston_housing"
     st.markdown("### Feature Analysis")
     st.markdown(
@@ -59,7 +70,35 @@ def generate_correlation(
 def generate_correlation_tables(
     dataset: pd.DataFrame, method: Literal["pearson", "kendall", "spearman"] = "pearson"
 ) -> None:
-    """Generate correlation tables for the specified dataset."""
+    """
+    Generate correlation tables for the specified dataset.
+
+    This function calculates the correlation between all pairs of features in
+    the dataset using the specified method. The correlation methods supported
+    are Pearson, Kendall, and Spearman. The function returns a DataFrame where
+    each cell represents the correlation between a pair of features.
+
+    Parameters
+    ----------
+    dataset : pd.DataFrame
+        The dataset for which to calculate feature correlations.
+    method : str, optional
+        The method to use for calculating correlations. Must be one of
+        "pearson", "kendall", or "spearman".
+        Default is "pearson".
+
+    Returns
+    -------
+    pd.DataFrame
+        A DataFrame where each cell represents the correlation between a pair
+        of features.
+
+    Raises
+    ------
+    ValueError
+        If the specified method is not one of "pearson", "kendall", or
+        "spearman".
+    """
     pearson_corr = generate_correlation(dataset)
 
     summary, heat_map = st.columns([1, 2])

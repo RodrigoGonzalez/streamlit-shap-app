@@ -6,7 +6,20 @@ from shap_app.webapp.images import render_svg
 
 
 def main_shap_description() -> None:
-    """Main description of SHAP"""
+    """
+    Main description of SHAP.
+
+    This function provides a detailed introduction to SHAP (SHapley Additive
+    exPlanations), a unified measure of feature importance that comes from game
+    theory. It explains the concept of SHAP, its properties, how SHAP values
+    are calculated, and the advantages of using SHAP values. It also discusses
+    the challenges of working with transformed features and provides strategies
+    to overcome these challenges.
+
+    Returns
+    -------
+    None
+    """
     summary, shap_image = st.columns(2)
     with summary:
         st.markdown(
