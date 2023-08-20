@@ -1,0 +1,6 @@
+[virtualenvs]
+in-project = true
+
+[build]
+src-dir = "src"
+build-dir = "build"

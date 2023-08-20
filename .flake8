@@ -1,0 +1,19 @@
+[flake8]
+max-line-length = 100
+
+ignore =
+    # E203: whitespace before ':'
+    E203,
+    # W503: line break before binary operator
+    W503,
+
+exclude =
+    .git,
+    .ipynb_checkpoints,
+    .mypy_cache,
+    .tox,
+    .venv,
+    __pycache__,
+    build,
+    docs,
+    src/fastapi_spacy/app/tests,
