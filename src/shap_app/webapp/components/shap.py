@@ -16,14 +16,54 @@ F = TypeVar("F", bound=Callable[..., Any])
 
 
 def st_typed_cache_resource(func: F) -> F:
-    """Streamlit cache resource decorator for typed functions."""
+    """
+    A decorator for caching resources in Streamlit applications with type
+    annotations.
+
+    This function is a wrapper around Streamlit's cache_resource function,
+    which allows for caching of resources in Streamlit applications. The
+    decorator is designed to work with functions that have type annotations,
+    ensuring that the cached resources are of the correct type.
+
+    Parameters
+    ----------
+    func : Callable[..., Any]
+        The function whose output is to be cached. This function should have
+        type annotations for all its parameters and its return value.
+
+    Returns
+    -------
+        Callable[..., Any]
+        The same function passed in `func`, but now its output is cached by
+        Streamlit.
+    """
     from streamlit import cache_resource
 
     return cast(F, cache_resource(func))
 
 
 def st_typed_cache_data(func: F) -> F:
-    """Streamlit cache data decorator for typed functions."""
+    """
+    A decorator for caching data in Streamlit applications with type
+    annotations.
+
+    This function is a wrapper around Streamlit's cache_data function, which
+    allows for caching of data in Streamlit applications. The decorator is
+    designed to work with functions that have type annotations, ensuring that
+    the cached data are of the correct type.
+
+    Parameters
+    ----------
+    func : Callable[..., Any]
+        The function whose output is to be cached. This function should have
+        type annotations for all its parameters and its return value.
+
+    Returns
+    -------
+    Callable[..., Any]
+        The same function passed in `func`, but now its output is cached by
+        Streamlit.
+    """
     from streamlit import cache_data
 
     return cast(F, cache_data(func))
@@ -79,20 +119,18 @@ def tree_shap_components_loader(
     return explainer, shap_explanation, shap_values
 
 
-def main_shap_plot(
-    explainer: shap.TreeExplainer, shap_values: shap.Explanation, dataset: pd.DataFrame
-) -> None:
+def main_shap_plot() -> None:
     """
-    Main SHAP plot
+    Generate the main SHAP plot for the given dataset and SHAP values.
 
-    Parameters
-    ----------
-    explainer : shap.TreeExplainer
-        The shap explainer
-    shap_values : shap.Explanation
-        The shap values
-    dataset : pd.DataFrame
-        The dataset to use for the shap plot
+    This function uses the provided SHAP explainer and SHAP values to generate
+    a SHAP plot for the given dataset. The SHAP plot visualizes the
+    contribution of each feature to the prediction for each sample in the
+    dataset.
+
+    Returns
+    -------
+    None
     """
     st.markdown(
         """

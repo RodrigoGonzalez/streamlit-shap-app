@@ -14,20 +14,36 @@ def get_single_explanation(
     data_source: str | None = "boston_housing",
 ) -> pd.DataFrame:
     """
-    Get single explanation
+    Generate a DataFrame that provides an explanation of the SHAP values for a
+    single observation.
+
+    This function takes the SHAP values for a single observation, the dataset
+    used for the SHAP plot, and the data source (default is "boston_housing").
+    It returns a DataFrame that contains the SHAP values and their absolute
+    values, sorted by the absolute values in descending order. If the data
+    source is  "boston_housing", it also includes a column that provides a text
+    explanation of the impact of the SHAP values on the median price.
 
     Parameters
     ----------
     individual_shap_values : np.ndarray
-        The shap values for a single observation
+        The SHAP values for a single observation. These values indicate how
+        much each feature in the observation contributes to the prediction.
     dataset : pd.DataFrame
-        The dataset to use for the shap plot
+        The dataset used for the SHAP plot. This dataset should include the
+        features used in the model.
     data_source : str | None, optional
-        The data source, by default "boston_housing"
+        The data source used for the SHAP plot. This is used to determine the
+        text explanation for the impact of the SHAP values. By default, it is
+        "boston_housing".
 
     Returns
     -------
     pd.DataFrame
+        A DataFrame that contains the SHAP values and their absolute values,
+        sorted by the absolute values in descending order. If the data source
+        is "boston_housing", it also includes a column that provides a text
+        explanation of the SHAP values on the median price.
     """
     df = pd.DataFrame(individual_shap_values, index=dataset.columns, columns=["SHAP Value"])
     df["Absolute_Values"] = df["SHAP Value"].abs()
@@ -68,29 +84,40 @@ def individual_tree_shap_plots(
     """Create individual SHAP plot"""
     st.markdown(
         """
-        **Base Value**: This is the average prediction of the model across all instances. In other
-        words, it's what you would predict if you didn't know any features for the current output.
-        It's the starting point of the plot.
+        **Base Value**: This is the average prediction of the
+        model across all instances. In other words, it's what
+        you would predict if you didn't know any features for
+        the current output. It's the starting point of the plot.
 
-        **SHAP Values**: Each feature used in the model is assigned a SHAP value. This value
-        represents how much knowing that feature changes the output of the model for the instance
-        in question. The SHAP value for a feature is proportional to the difference between the
-        prediction for the instance and the base value, and it's allocated according to the
-        contribution of each feature.
+        **SHAP Values**: Each feature used in the model is
+        assigned a SHAP value. This value represents how much
+        knowing that feature changes the output of the model
+        for the instance in question. The SHAP value for a
+        feature is proportional to the difference between the
+        prediction for the instance and the base value, and
+        it's allocated according to the contribution of each
+        feature.
 
-        **Color**: The features are color-coded based on their values for the specific instance.
-        High values are shown in red, and low values are shown in blue. This provides a visual
-        way to see which features are high or low for the given instance, and how that contributes
-        to the prediction.
+        **Color**: The features are color-coded based on their
+        values for the specific instance. High values are shown
+        in red, and low values are shown in blue. This provides
+        a visual way to see which features are high or low for
+        the given instance, and how that contributes to the
+        prediction.
 
-        **Position on the X-axis**: The position of a SHAP value on the X-axis shows whether the
-        effect of that value is associated with a higher or lower prediction. If a feature's SHAP
-        value is positioned to the right of the base value, it means that this feature increases
-        the prediction; if it's to the left, it decreases the prediction.
+        **Position on the X-axis**: The position of a SHAP value
+        on the X-axis shows whether the effect of that value is
+        associated with a higher or lower prediction. If a
+        feature's SHAP value is positioned to the right of the
+        base value, it means that this feature increases the
+        prediction; if it's to the left, it decreases the
+        prediction.
 
-        **Size of the SHAP Value**: The magnitude of a SHAP value tells you the importance of that
-        feature in contributing to the difference between the actual prediction and the base value.
-        Larger SHAP values (either positive or negative) have a bigger impact.
+        **Size of the SHAP Value**: The magnitude of a SHAP
+        value tells you the importance of that feature in
+        contributing to the difference between the actual
+        prediction and the base value. Larger SHAP values
+        (either positive or negative) have a bigger impact.
         """
     )
 
@@ -130,9 +157,11 @@ def individual_tree_shap_plots(
     with waterfall_plot:
         st.markdown(
             """
-            The waterfall plot shows how each feature in a given instance contributes to the
-            final prediction. The plot is made of stacked bars, where each bar represents a feature
-            value for a given instance. The height of the bar shows the SHAP value of that feature.
+            The waterfall plot shows how each feature in a given instance
+            contributes to the final prediction. The plot is made of stacked
+            bars, where each bar represents a feature value for a given
+            instance. The height of the bar shows the SHAP value of that
+            feature.
             """
         )
         st_shap(

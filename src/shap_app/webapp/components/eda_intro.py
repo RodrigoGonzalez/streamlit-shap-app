@@ -3,7 +3,19 @@ import streamlit as st
 
 
 def eda_main_definition() -> None:
-    """Main EDA definition"""
+    """
+    Main EDA definition
+
+    This function provides the main definition of Exploratory Data Analysis
+    (EDA) in the context of the application. It uses the Streamlit library to
+    display Markdown text on the web application. The Markdown text provides
+    a detailed explanation of EDA, its importance, and the various steps
+    involved in the process.
+
+    Returns
+    -------
+    None
+    """
 
     st.markdown(
         """
@@ -32,52 +44,56 @@ def eda_main_definition() -> None:
             """
             #### Data Collection
 
-            This is the process of gathering data from various sources. The data could be collected
-            from a database, files, online repositories, web scraping, APIs, etc.
+            This is the process of gathering data from various sources. The data
+            could be collected from a database, files, online repositories, web
+            scraping, APIs, etc.
 
             #### Data Cleaning
 
-            This step involves preprocessing the data to handle missing values, outliers,
-            incorrect data, etc. This is important because the quality of data and the useful
-            information that can be derived from it directly affects the ability to perform EDA.
+            This step involves preprocessing the data to handle missing values,
+            outliers, incorrect data, etc. This is important because the quality
+            of data and the useful information that can be derived from it directly
+            affects the ability to perform EDA.
 
             #### Data Wrangling or Munging
 
-            This is the process of converting or mapping data from its raw form into another format
-            that allows for more convenient consumption and organization of the data. It involves
-            transforming and mapping data from one "raw" data form into another format with the
-            intent of making it more appropriate and valuable for a variety of downstream purposes
+            This is the process of converting or mapping data from its raw form
+            into another format that allows for more convenient consumption and
+            organization of the data. It involves transforming and mapping data
+            from one "raw" data form into another format with the intent of making
+            it more appropriate and valuable for a variety of downstream purposes,
             such as analytics.
 
             #### Data Profiling
 
-            This involves statistics or summaries of the data like mean, median, mode, count, etc.
-            It also includes understanding the distribution of data, the presence of skewness, etc.
+            This involves statistics or summaries of the data like mean, median,
+            mode, count, etc. It also includes understanding the distribution of
+            data, the presence of skewness, etc.
 
             #### Visualization
 
-            This involves creating charts, plots, histograms, box-plots, etc. to understand the
-            distribution, count, relationship between two variables, spotting outliers, etc.
-            Visualization can provide valuable insights that are not apparent from looking at the
-            raw data.
+            This involves creating charts, plots, histograms, box-plots, etc. to
+            understand the distribution, count, relationship between two variables,
+            spotting outliers, etc. Visualization can provide valuable insights that
+            are not apparent from looking at the raw data.
 
             #### Correlation
 
-            This involves understanding the relationship between different variables in the
-            dataset. This is important in the context of a machine learning or statistical
-            modeling task.
+            This involves understanding the relationship between different variables
+            in the dataset. This is important in the context of a machine learning or
+            statistical modeling task.
 
             #### Hypothesis Testing
 
-            his is a statistical method that is used in making statistical decisions using
-            experimental data. It's basically an assumption that we make about
+            This is a statistical method that is used in making statistical decisions
+            using experimental data. It's basically an assumption that we make about
             the population parameter.
 
             #### Dimensionality Reduction
 
-            This technique is used to reduce the number of random variables under consideration,
-            by obtaining a set of principal variables. It can be divided into feature
-            selection and feature extraction.
+            This technique is used to reduce the number of random variables under
+            consideration, by obtaining a set of principal variables. It can be
+            divided into feature selection and feature extraction.
             """
         )
     st.markdown(

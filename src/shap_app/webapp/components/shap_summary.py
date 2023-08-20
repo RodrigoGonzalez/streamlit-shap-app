@@ -13,14 +13,29 @@ SUMMARY_PLOTS = {
 
 def shap_feature_summary(dataset: pd.DataFrame, shap_values: np.ndarray) -> None:
     """
-    Display SHAP feature importance
+    Display SHAP feature importance.
+
+    This function generates a SHAP summary plot and a SHAP dependence plot.
+    The summary plot provides an overview of the most important features for
+    the model, showing the SHAP values of every feature for every sample. The
+    dependence plot shows how a single feature affects the output of the model,
+    plotting the SHAP value of that feature versus its value for all the
+    examples in the dataset.
 
     Parameters
     ----------
     dataset : pd.DataFrame
-        The dataset used to train the model
+        The dataset used to train the model. Each row represents a sample and
+        each column represents a feature.
     shap_values : np.ndarray
-        The SHAP values calculated for the model
+        The SHAP values calculated for the model. Each row corresponds to a
+        sample and each column corresponds to a feature. The SHAP values
+        represent the contribution of each feature to the prediction for a
+        sample.
+
+    Returns
+    -------
+    None
     """
     st.markdown(
         "A SHAP value for a feature of a specific prediction represents how "
