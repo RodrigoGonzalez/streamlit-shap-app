@@ -44,7 +44,7 @@ sidebar_info()
 
 def set_session_state(dataset_name: str = "boston_housing") -> None:
     """Set session state variables"""
-    st.session_state["dataset_name"] = dataset_name
+    st.session_state["dataset"] = dataset_name
 
     model = load_model(f"{MAIN_DIR}/trained_models/{dataset_name}/catboost_regressor.pkl")
     df = load_data(dataset_name)
