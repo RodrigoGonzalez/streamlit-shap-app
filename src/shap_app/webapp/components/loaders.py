@@ -1,4 +1,5 @@
 """ This module contains functions for loading the model and data. """
+import os
 import pickle
 from collections.abc import Callable
 from typing import Any
@@ -94,10 +95,11 @@ def load_model(model_path: str) -> object:
 
 
 @st_typed_cache_data
-def load_data(dataset_name: str = "boston_housing") -> pd.DataFrame:
+def load_data(dataset: str = "boston_housing") -> pd.DataFrame:
     """
     Load a dataset using the shap library. By default, the Boston Housing
-    dataset is loaded.
+    dataset is loaded. This function can also load a dataset from a CSV file
+    if a valid file path is provided instead of a dataset name.
 
     This function is decorated with the `st_typed_cache_data` decorator, which
     caches the output of the function in Streamlit. This is useful for
@@ -107,16 +109,22 @@ def load_data(dataset_name: str = "boston_housing") -> pd.DataFrame:
 
     Parameters
     ----------
-    dataset_name : str, optional
-        The name of the dataset to load. If not provided, the Boston Housing
-        dataset is loaded by default.
+    dataset : str, optional
+        The name of the dataset to load or the path to a CSV file. If not
+        provided, the Boston Housing dataset is loaded by default.
 
     Returns
     -------
     pd.DataFrame
         The loaded dataset as a Panda's DataFrame.
     """
-    # data = load_full_dataset(dataset_name)
-    # data.drop("TARGET", axis=1, inplace=True)
-    # return data
-    return load_full_dataset(dataset_name)
+    # Check if the dataset is a file path
+    if os.path.isfile(dataset):
+        return pd.read_csv(dataset)
+
+    # Check if the dataset is a known dataset name
+    known_datasets = ["boston_housing", "california_housing"]
+    if dataset in known_datasets:
+        return load_full_dataset(dataset)
+
+    raise ValueError(f"Unknown dataset: {dataset}")

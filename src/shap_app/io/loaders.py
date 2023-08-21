@@ -27,7 +27,7 @@ def load_full_dataset(dataset_name: str = "boston_housing") -> pd.DataFrame:
     Raises
     ------
     ValueError
-        If the specified dataset_name is not supported.
+        If the specified dataset is not supported.
     """
     if dataset_name == "boston_housing":
         return load_boston_housing_data()
