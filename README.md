@@ -6,17 +6,25 @@ This app demonstrates how to use the
 [SHAP](https://shap.readthedocs.io/en/latest/index.html)
 library to explain models.
 
-SHAP (SHapley Additive exPlanations) is a unified measure of
-feature importance that comes from game theory. It connects optimal
-credit allocation with local explanations using the classic Shapley
-values from game theory and their related extensions.
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <div style="width: 45%;">
+    <p>SHAP (SHapley Additive exPlanations) is a unified measure of feature
+    importance that originates from game theory. It connects optimal credit
+    allocation with local explanations using the classic Shapley values from
+    game theory and their related extensions.
 
-In the context of machine learning, SHAP values provide a measure
-for the contribution of each feature to the prediction for
-individual samples. They can help to interpret the output of any
-machine learning model. Mainly, Shapley values answer the question:
-What is the relative contribution of each feature value
-to the prediction?
+In the context of machine learning, SHAP values provide a measure for
+    the contribution of each feature to the prediction for individual samples.
+    They can help to interpret the output of any machine learning model.
+    Essentially, Shapley values answer the question: What is the relative
+    contribution of each feature value to the prediction?</p>
+
+  </div>
+  <div style="width: 45%;">
+    <img src="assets/shap_header.svg" alt="SHAP" style="max-width: 100%; height: auto;" />
+  </div>
+</div>
+
 
 ## Installation
 
