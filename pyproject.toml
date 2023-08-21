@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "shap_app"
-version = "0.1.0"
+version = "0.2.0"
 description = "A project"
 authors = ["Rodrigo Gonzalez  <r@rodrigo-gonzalez.com>"]
 license = "MIT"
@@ -102,7 +102,7 @@ mkdocstrings = "^0.22.0"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.1.0"
+version = "0.2.0"
 tag_format = "v$version"
 version_scheme = "semver"
 version_provider = "poetry"
