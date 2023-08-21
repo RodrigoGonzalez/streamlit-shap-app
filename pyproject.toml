@@ -21,6 +21,15 @@ classifiers = [
     "Typing :: Typed",
 ]
 
+packages = [
+    { include = "shap_app", from = "src" }
+]
+
+
+[tool.poetry.scripts]
+shap-app = 'shap_app.__main__:main'
+
+
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
 streamlit = "^1.25.0"
@@ -58,6 +67,7 @@ seaborn = "^0.12.2"
 strictyaml = "^1.7.3"
 cmake = "^3.27.2"
 matplotlib = "^3.7.2"
+typer = "^0.9.0"
 
 
 [tool.poetry.group.dev.dependencies]
