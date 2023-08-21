@@ -57,12 +57,12 @@ def get_single_explanation(
             if shap_value > 0:
                 return (
                     f" has a positive impact, and "
-                    f"increases the predicted value by ${shap_value:.2f}"
+                    f"increases the predicted value by $ {shap_value:.2f}"
                 )
             else:
                 return (
                     f" has a negative impact, and "
-                    f"decreases the predicted value by ${shap_value:.2f}"
+                    f"decreases the predicted value by -$ {abs(shap_value):.2f}"
                 )
 
         df["SHAP Value Impact of the Median Price"] = df.index + df["SHAP Value"].apply(
@@ -150,9 +150,10 @@ def individual_tree_shap_plots(
             contribution_threshold=0.05,
         )
     )
+
     st.markdown("### Waterfall SHAP Plot")
 
-    waterfall_plot, explanation = st.columns(2)
+    waterfall_plot, explanation = st.columns(2, gap="medium")
 
     with waterfall_plot:
         st.markdown(
@@ -164,13 +165,15 @@ def individual_tree_shap_plots(
             feature.
             """
         )
-        st_shap(
-            shap.waterfall_plot(
-                shap_values=shap_explanation[slider_value, :], max_display=30, show=True
-            ),
-            height=None,
-            width=650,
+
+        # Generate the SHAP plot as HTML
+        waterfall_fig = shap.waterfall_plot(
+            shap_values=shap_explanation[slider_value, :], max_display=30, show=False
         )
+
+        # Display the matplotlib figure in Streamlit
+        st.pyplot(waterfall_fig)
+
         st.markdown(
             "Where $E[f(x)]$ is the Expected Value of the model output for the "
             "given input (i.e., $f(x)$)."
@@ -192,9 +195,10 @@ def individual_tree_shap_plots(
             if data_source == "boston_housing"
             else "SHAP Value "
         )
-        st.dataframe(
-            df[column_to_use],
-            height=df.shape[0] * 40,
-            hide_index=True,
-            use_container_width=True,
-        )
+        # Convert the selected column to a list
+        data_list = df[column_to_use].tolist()
+        # Generate a markdown string with list items for each element in the list
+        markdown_string = "\n".join([f"- {item}" for item in data_list])
+        # Display the generated markdown string
+        st.markdown("**SHAP Value Impact of the Median Price**")
+        st.markdown(markdown_string)

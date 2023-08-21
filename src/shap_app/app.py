@@ -26,6 +26,19 @@ plt.style.use("ggplot")
 # st.set_option("client.showErrorDetails", True)
 st.set_page_config(page_title="Explainable AI", page_icon="😎", layout="wide")
 
+# Add custom CSS
+st.markdown(
+    """
+    <style>
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 with st.sidebar:
     selected = option_menu(
         "Choose Dataset To Explore",

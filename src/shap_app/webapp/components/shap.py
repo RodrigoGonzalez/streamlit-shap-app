@@ -25,8 +25,6 @@ def st_typed_cache_resource(func: F) -> F:
     decorator is designed to work with functions that have type annotations,
     ensuring that the cached resources are of the correct type.
 
-    Added to make MyPy happy.
-
     Parameters
     ----------
     func : Callable[..., Any]
@@ -53,8 +51,6 @@ def st_typed_cache_data(func: F) -> F:
     allows for caching of data in Streamlit applications. The decorator is
     designed to work with functions that have type annotations, ensuring that
     the cached data are of the correct type.
-
-    Added to make MyPy happy.
 
     Parameters
     ----------
