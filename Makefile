@@ -113,18 +113,18 @@ tests: unit-tests  ## run all tests
 
 unit-tests: ## run unit-tests with pytest
 	@echo "+ $@"
-	@TEST_MODE=True poetry run python -m pytest  -vvvvsra --doctest-modules tests/unit/
+	@TEST_MODE=True poetry run python -m pytest  -vvvvsra --doctest-modules tests/
 
 unit-tests-cov: ## run unit-tests with pytest and show coverage (terminal + html)
 	@echo "+ $@"
 	@TEST_MODE=True poetry run pytest -vvvvsra -p no:cacheprovider --doctest-modules --cov=src \
-	--cov-report term-missing --cov-report=html tests/unit/
+	--cov-report term-missing --cov-report=html tests/
 
 unit-tests-cov-fail: ## run unit-tests and show coverage (terminal + xml) & fail if coverage too low & create files for CI
 	@echo "+ $@"
 	@TEST_MODE=True poetry run pytest -vvvvsra -p no:cacheprovider --doctest-modules --cov=src \
 	--cov-report term-missing --cov-report=xml --cov-fail-under=10 --junitxml=pytest.xml \
-	tests/unit/ | tee pytest-coverage.txt
+	tests/ | tee pytest-coverage.txt
 
 single-test: ## run a single test with pytest (e.g. `make single-test TEST=tests/test_utils.py::test_get_project_root`)
 	@echo "+ $@"

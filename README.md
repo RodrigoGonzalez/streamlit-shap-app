@@ -121,10 +121,31 @@ happened. Were there any outliers or anomalies in your data that affected the
 results? Can you explain why these occurred, even if they weren’t expected?
 
 ## Takeaways
+
 Finally, you’ll want to leave the readers with some takeaways. Did anything
 surprising happen during this process that changed how you think about machine
 learning at large? Did any personal growth occur as a result of working on
-this project?
+this project? What would you do differently next time?
+
+### Streamlit
+
+Streamlit is an excellent open source library for creating web applications
+that showcase machine learning and data science projects. It's easy to use,
+the documentation is excellent, and it integrates well with the open source
+libraries used in this project. However, it may not be the best choice for
+scalable or enterprise-level applications. Streamlit lacks some of the
+more advanced customizations available in other web development frameworks,
+but my biggest concerns for using outside smaller projects and prototyping
+are that state management can be challenging and performance will be an
+issue for very large datasets or highly complex applications. A problem I ran
+into was that testing Streamlit apps can be challenging, as it's not a typical
+Python library.
+
+Overall, I think Streamlit is a great tool to have at your disposal, and
+the problem it solves, getting something up and running quickly, is what it
+excels at.
+
+
 
 ## Relevant Literature and Links
 
