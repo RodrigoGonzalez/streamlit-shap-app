@@ -86,18 +86,18 @@ to use pip. To install the dependencies, run the following
 command:
 
 ```bash
-pip install -r requirements.txt
+pip install -r pip/requirements.txt
 ```
 
 ## Running Application
 
-To run simply type
+To run simply type:
 
 ```bash
 shap-app
 ```
 
-To see all the options type (currently limited to only
+To see all the options, type (currently limited to only
 running the application.)
 
 ```bash
