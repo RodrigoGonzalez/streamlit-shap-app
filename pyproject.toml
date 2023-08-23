@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "shap-app"
-version = "0.3.2"
+version = "0.3.3"
 description = "A comprehensive application for interpreting machine learning models using SHAP values"
 authors = ["Rodrigo Gonzalez  <r@rodrigo-gonzalez.com>"]
 license = "MIT"
@@ -120,7 +120,7 @@ mkdocstrings = "^0.22.0"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.3.2"
+version = "0.3.3"
 tag_format = "v$version"
 version_scheme = "semver"
 version_provider = "poetry"
