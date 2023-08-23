@@ -4,13 +4,15 @@ from typing import Any
 from typing import TypeVar
 from typing import cast
 
+import matplotlib
 import numpy as np
 import pandas as pd
 import shap
 import streamlit as st
 from streamlit_shap import st_shap
 
-shap.initjs()
+matplotlib.use("Agg")
+
 
 F = TypeVar("F", bound=Callable[..., Any])
 

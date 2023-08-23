@@ -1,8 +1,11 @@
+import matplotlib
 import numpy as np
 import pandas as pd
 import shap
 import streamlit as st
 from matplotlib import pyplot as plt
+
+matplotlib.use("Agg")
 
 SUMMARY_PLOTS = {
     "Dot Plot": "dot",
@@ -105,6 +108,7 @@ def _generate_shap_summary_plot(dataset: pd.DataFrame, shap_values: np.ndarray) 
         horizontal=True,
         key="summary_radio",
     )
+
     # Generate the SHAP summary plot
     shap.summary_plot(shap_values, dataset, plot_type=SUMMARY_PLOTS[button], show=False)
     # Get the current matplotlib figure

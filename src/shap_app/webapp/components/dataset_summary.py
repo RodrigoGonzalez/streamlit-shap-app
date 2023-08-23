@@ -1,9 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-import shap
 import streamlit as st
 
-shap.initjs()
 plt.style.use("ggplot")
 
 

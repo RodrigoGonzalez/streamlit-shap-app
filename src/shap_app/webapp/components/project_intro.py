@@ -63,36 +63,54 @@ def boston_housing_dataset_introduction() -> None:
         The Boston Housing dataset is a renowned dataset in the field of
         machine learning, often used for regression tasks. It contains 506
         entries, each representing a census tract in the Boston area, with 13
-        features and a target variable. The features include a variety of
-        information about the area, such as the per capita crime rate (CRIM),
-        the proportion of residential land zoned for lots over 25,000 sq.ft.
-        (ZN), the proportion of non-retail business acres per town (INDUS),
-        and a binary variable indicating whether the tract borders the Charles
-        River (CHAS). It also includes environmental data like nitric oxide
-        concentration (NOX), and housing information like the average number
-        of rooms per dwelling (RM), the proportion of homes built before 1940
-        (AGE), and the median value of owner-occupied homes (MEDV). Other
-        features provide information about the location's accessibility,
-        such as weighted distances to five Boston employment centers (DIS),
-        an index of accessibility to radial highways (RAD), and the full-value
-        property-tax rate per $10,000 (TAX). The dataset also includes the
-        pupil-teacher ratio by town (PTRATIO), the proportion of people of
-        African American descent (B), and the percentage of the population
-        considered lower status (LSTAT).
+        features and a target variable.
+
+        The features include a variety of information about the area,
+        such as:
+        - the per capita crime rate (CRIM)
+        - the proportion of residential land zoned for lots over 25,000 sq.ft.
+            (ZN)
+        - the proportion of non-retail business acres per town (INDUS)
+        - a binary variable indicating whether the tract borders the Charles
+        River (CHAS)
+
+        It also includes environmental data like:
+        - nitric oxide concentration (NOX)
+        - housing information like the average number of rooms per dwelling
+            (RM)
+        - the proportion of homes built before 1940 (AGE)
+        - the median value of owner-occupied homes (MEDV)
+
+        Other features provide information about the location's accessibility,
+        such as:
+        - the weighted distances to five Boston employment centers (DIS)
+        - an index of accessibility to radial highways (RAD)
+        - the full-value property-tax rate per $10,000 (TAX)
+
+        The dataset also includes demographic information:
+        - the pupil-teacher ratio by town (PTRATIO)
+        - the proportion of people of African American descent (B)
+        - the percentage of the population considered lower status (LSTAT)
 
         ### Limitations
 
-        However, the Boston Housing dataset has several limitations. First,
-        it's quite old; the data was collected in 1978, and housing markets
-        have changed significantly since then. Second, the dataset is
-        relatively small, with only 506 entries, which can limit the complexity
-        of the models that can be trained on it. Third, the 'B' feature,
-        which represents the proportion of people of African American descent,
-        is calculated in a way that may not accurately reflect the racial
-        demographics of the area. Finally, the dataset lacks features that
-        could be important in predicting house prices, such as the size of the
-        house in square feet, the number of bathrooms, or the presence of
-        amenities like a garage or swimming pool.
+        The Boston Housing dataset has several limitations.
+
+        - First, it's quite old; the data was collected in 1978, and
+            housing markets have changed significantly since then.
+
+        - Second, the dataset is relatively small, with only 506 entries,
+            which can limit the complexity of the models that can be trained on
+            it.
+
+        - Third, the 'B' feature, which represents the proportion of people of
+            African American descent, is calculated in a way that may not
+            accurately reflect the racial demographics of the area.
+
+        - Finally, the dataset lacks features that could be important in
+            predicting house prices, such as the size of the house in square
+            feet, the number of bathrooms, or the presence of amenities like a
+            garage or swimming pool.
 
         ### Ethical Considerations
 
@@ -101,6 +119,7 @@ def boston_housing_dataset_introduction() -> None:
         Using race as a predictor variable in a housing price model could
         perpetuate existing racial biases in housing prices, and it raises
         questions about the fairness and legality of such a practice.
+
         Furthermore, the 'LSTAT' feature, which represents the percentage of
         the population considered lower status, could also reinforce
         socioeconomic biases. Therefore, it's crucial to consider these
