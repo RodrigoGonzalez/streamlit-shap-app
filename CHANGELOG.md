@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.2 (2023-08-22)
+
+### Fix
+
+- **pyproject**: add readme, licence, changelog to package (#26)
+
 ## v0.3.1 (2023-08-22)
 
 ### Fix
