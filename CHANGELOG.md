@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.0 (2023-08-22)
+
+### Feat
+
+- **shap-app**: add cli commands (#17)
+
 ## v0.2.0 (2023-08-21)
 
 ### Feat
