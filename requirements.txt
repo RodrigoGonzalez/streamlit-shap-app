@@ -6,7 +6,7 @@
 #
 altair==5.0.1
     # via
-    #   shap_app (pyproject.toml)
+    #   shap-app (pyproject.toml)
     #   streamlit
 annotated-types==0.5.0
     # via pydantic
@@ -19,28 +19,28 @@ blinker==1.6.2
 cachetools==5.3.1
     # via streamlit
 catboost==1.2
-    # via shap_app (pyproject.toml)
+    # via shap-app (pyproject.toml)
 certifi==2023.7.22
     # via requests
 charset-normalizer==3.2.0
     # via requests
 click==8.1.7
     # via
-    #   shap_app (pyproject.toml)
+    #   shap-app (pyproject.toml)
     #   streamlit
     #   typer
 cloudpickle==2.2.1
     # via shap
 cmake==3.27.2
-    # via shap_app (pyproject.toml)
+    # via shap-app (pyproject.toml)
 contourpy==1.1.0
     # via matplotlib
 cycler==0.11.0
     # via matplotlib
 cython==3.0.0
-    # via shap_app (pyproject.toml)
+    # via shap-app (pyproject.toml)
 feature-engine==1.6.1
-    # via shap_app (pyproject.toml)
+    # via shap-app (pyproject.toml)
 fonttools==4.42.1
     # via matplotlib
 gitdb==4.0.10
@@ -60,7 +60,7 @@ jinja2==3.1.2
 joblib==1.3.2
     # via
     #   scikit-learn
-    #   shap_app (pyproject.toml)
+    #   shap-app (pyproject.toml)
 jsonschema==4.19.0
     # via altair
 jsonschema-specifications==2023.7.1
@@ -68,11 +68,11 @@ jsonschema-specifications==2023.7.1
 kiwisolver==1.4.4
     # via matplotlib
 lightgbm==4.0.0
-    # via shap_app (pyproject.toml)
+    # via shap-app (pyproject.toml)
 llvmlite==0.40.1
     # via
     #   numba
-    #   shap_app (pyproject.toml)
+    #   shap-app (pyproject.toml)
 markdown-it-py==3.0.0
     # via rich
 markupsafe==2.1.3
@@ -80,12 +80,12 @@ markupsafe==2.1.3
 matplotlib==3.7.2
     # via
     #   catboost
-    #   shap_app (pyproject.toml)
+    #   shap-app (pyproject.toml)
 mdurl==0.1.2
     # via markdown-it-py
-numba==0.47.0
+numba==0.57.1
     # via shap
-numpy==1.25.2
+numpy==1.24.4
     # via
     #   altair
     #   catboost
@@ -101,7 +101,7 @@ numpy==1.25.2
     #   scikit-learn
     #   scipy
     #   shap
-    #   shap_app (pyproject.toml)
+    #   shap-app (pyproject.toml)
     #   statsmodels
     #   streamlit
     #   xgboost
@@ -118,7 +118,7 @@ pandas==2.0.3
     #   catboost
     #   feature-engine
     #   shap
-    #   shap_app (pyproject.toml)
+    #   shap-app (pyproject.toml)
     #   statsmodels
     #   streamlit
     #   streamlit-aggrid
@@ -126,7 +126,7 @@ pandas==2.0.3
 patsy==0.5.3
     # via statsmodels
 pdfkit==1.0.0
-    # via shap_app (pyproject.toml)
+    # via shap-app (pyproject.toml)
 pillow==9.5.0
     # via
     #   matplotlib
@@ -135,20 +135,18 @@ plotly==5.16.1
     # via catboost
 protobuf==4.24.1
     # via
-    #   shap_app (pyproject.toml)
+    #   shap-app (pyproject.toml)
     #   streamlit
 pyarrow==12.0.1
-    # via
-    #   shap_app (pyproject.toml)
-    #   streamlit
+    # via streamlit
 pydantic==2.2.1
     # via
     #   pydantic-settings
-    #   shap_app (pyproject.toml)
+    #   shap-app (pyproject.toml)
 pydantic-core==2.6.1
     # via pydantic
 pydantic-settings==2.0.3
-    # via shap_app (pyproject.toml)
+    # via shap-app (pyproject.toml)
 pydeck==0.8.0
     # via streamlit
 pygments==2.16.1
@@ -187,7 +185,7 @@ scikit-learn==1.3.0
     # via
     #   feature-engine
     #   shap
-    #   shap_app (pyproject.toml)
+    #   shap-app (pyproject.toml)
 scipy==1.11.2
     # via
     #   catboost
@@ -195,12 +193,12 @@ scipy==1.11.2
     #   lightgbm
     #   scikit-learn
     #   shap
-    #   shap_app (pyproject.toml)
+    #   shap-app (pyproject.toml)
     #   statsmodels
     #   xgboost
 shap==0.42.1
     # via
-    #   shap_app (pyproject.toml)
+    #   shap-app (pyproject.toml)
     #   streamlit-shap
 six==1.16.0
     # via
@@ -214,23 +212,23 @@ smmap==5.0.0
 statsmodels==0.14.0
     # via
     #   feature-engine
-    #   shap_app (pyproject.toml)
+    #   shap-app (pyproject.toml)
 streamlit==1.25.0
     # via
-    #   shap_app (pyproject.toml)
+    #   shap-app (pyproject.toml)
     #   streamlit-aggrid
     #   streamlit-option-menu
     #   streamlit-tags
 streamlit-aggrid==0.3.4.post3
-    # via shap_app (pyproject.toml)
+    # via shap-app (pyproject.toml)
 streamlit-option-menu==0.3.6
-    # via shap_app (pyproject.toml)
+    # via shap-app (pyproject.toml)
 streamlit-shap==1.0.2
-    # via shap_app (pyproject.toml)
+    # via shap-app (pyproject.toml)
 streamlit-tags==1.2.8
-    # via shap_app (pyproject.toml)
+    # via shap-app (pyproject.toml)
 strictyaml==1.7.3
-    # via shap_app (pyproject.toml)
+    # via shap-app (pyproject.toml)
 tenacity==8.2.3
     # via
     #   plotly
@@ -246,7 +244,7 @@ tornado==6.3.3
 tqdm==4.66.1
     # via shap
 typer==0.9.0
-    # via shap_app (pyproject.toml)
+    # via shap-app (pyproject.toml)
 typing-extensions==4.7.1
     # via
     #   altair
@@ -265,11 +263,8 @@ urllib3==2.0.4
 validators==0.21.2
     # via streamlit
 vega-datasets==0.9.0
-    # via shap_app (pyproject.toml)
+    # via shap-app (pyproject.toml)
 xgboost==1.7.6
-    # via shap_app (pyproject.toml)
+    # via shap-app (pyproject.toml)
 zipp==3.16.2
     # via importlib-metadata
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools
