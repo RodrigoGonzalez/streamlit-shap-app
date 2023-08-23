@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.6 (2023-08-23)
+
+### Fix
+
+- **shap-app**: update matplotlib backend (#37)
+
 ## v0.3.5 (2023-08-23)
 
 ### Fix
