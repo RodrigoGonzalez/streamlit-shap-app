@@ -12,7 +12,6 @@ from shap_app.webapp.components.eda_correlations import generate_correlation_tab
 from shap_app.webapp.components.eda_intro import eda_main_definition
 from shap_app.webapp.components.loaders import load_data
 from shap_app.webapp.components.loaders import load_model
-from shap_app.webapp.components.model_info import model_info
 from shap_app.webapp.components.project_intro import dataset_introduction
 from shap_app.webapp.components.shap import main_shap_plot
 from shap_app.webapp.components.shap import tree_shap_components_loader
@@ -120,11 +119,12 @@ with st.expander("Examining Correlations"):
 st.markdown("---")
 
 
+# TODO: Finish this section
 # Model information
-st.markdown("## Prediction Models")
-st.markdown("### Prediction Model Information")
-model_info(st.session_state["model"])
-st.markdown("---")
+# st.markdown("## Prediction Models")
+# st.markdown("### Prediction Model Information")
+# model_info(st.session_state["model"])
+# st.markdown("---")
 
 
 # Explaining the model

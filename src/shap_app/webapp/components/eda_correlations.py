@@ -4,7 +4,7 @@ from typing import Literal
 import pandas as pd
 import seaborn as sns
 import streamlit as st
-from streamlit_shap import st_shap
+from matplotlib import pyplot as plt
 
 
 def feature_analysis() -> None:
@@ -110,6 +110,11 @@ def generate_correlation_tables(
 
     with heat_map:
         heat_map.header(f"{method.capitalize()} Correlation Heatmap")
+
+        # Create a new matplotlib figure
+        fig, ax = plt.subplots()
+
+        # Generate the heatmap
         sns.heatmap(
             pearson_corr.values,
             cbar=True,
@@ -120,8 +125,13 @@ def generate_correlation_tables(
             yticklabels=pearson_corr.columns,
             xticklabels=pearson_corr.columns,
             cmap="coolwarm",
+            ax=ax,
         )
-        st_shap(plot=None)
+
+        # Display the matplotlib figure in Streamlit
+        st.pyplot(fig, clear_figure=True)
+
+        # st_shap(plot=None)
 
     if st.checkbox("Display detailed feature correlations"):
         st.markdown(
