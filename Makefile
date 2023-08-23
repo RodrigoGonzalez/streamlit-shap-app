@@ -75,7 +75,7 @@ activate:  ## Activate the virtual environment
 	poetry shell
 
 freeze-deps:
-	poetry run pip-compile --upgrade --output-file=requirements.txt --resolver=backtracking --verbose
+	poetry run pip-compile --upgrade --output-file=pip/requirements.txt --resolver=backtracking --verbose
 
 .PHONY: activate freeze-deps local
 
