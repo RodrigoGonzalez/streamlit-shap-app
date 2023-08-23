@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.1 (2023-08-22)
+
+### Fix
+
+- **shap-app**: Fix main command for CLI (#24)
+
 ## v0.3.0 (2023-08-22)
 
 ### Feat
