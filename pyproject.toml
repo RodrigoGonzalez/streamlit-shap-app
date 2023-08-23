@@ -85,6 +85,8 @@ matplotlib = "^3.7.2"
 typer = "^0.9.0"
 cython = "^3.0.0"
 lightgbm = "^4.0.0"
+setuptools = "^68.1.2"
+numba = "^0.57.1"
 
 
 [tool.poetry.group.dev.dependencies]
