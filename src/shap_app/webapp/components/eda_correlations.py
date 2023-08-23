@@ -1,10 +1,13 @@
 """ Exploratory Data Analysis (EDA) Correlations component """
 from typing import Literal
 
+import matplotlib
 import pandas as pd
 import seaborn as sns
 import streamlit as st
 from matplotlib import pyplot as plt
+
+matplotlib.use("Agg")
 
 
 def feature_analysis() -> None:
@@ -27,7 +30,8 @@ def feature_analysis() -> None:
         Data Science involves the formulation of certain assumptions and
         hypotheses about the dataset, which are then empirically tested through
         various analytical procedures. Based on an initial examination of the
-        dataset, we can postulate the following relationships for each feature:
+        dataset, we can form the following relationships for the following
+        features:
 
         - The 'RM' feature, representing the average number of rooms per dwelling,
           is likely to exhibit a direct correlation with the housing price. The

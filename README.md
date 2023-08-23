@@ -8,7 +8,11 @@
 This app demonstrates how to use the
 [SHAP](https://shap.readthedocs.io/en/latest/index.html)
 library to explain models employing the popular `streamlit`
-framework for the application frontend.
+framework for the application frontend. The application is
+deployed and can be accessed at
+[https://shap-app.streamlit.app/](https://shap-app.streamlit.app/).
+
+
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="width: 45%;">

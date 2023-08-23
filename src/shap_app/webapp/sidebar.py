@@ -103,7 +103,7 @@ def sidebar_info(dataset: str = "boston_housing") -> None:
     with st.sidebar.expander("About Me"):
         st.markdown(
             """
-            ### Rodrigo Gonzalez
+            ### Created By: Rodrigo Gonzalez
             - Email: r[at]rodrigo-gonzalez.com
 
             #### SHAP Application:
