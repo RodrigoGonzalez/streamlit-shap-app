@@ -2,6 +2,17 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.4 (2023-08-23)
+
+### Fix
+
+- **pyproject**: seaborn was missing for some reason (#33)
+- **pyproject**: installation issues on streamlit (#32)
+
+### Refactor
+
+- **requirements**: move requirements file to directory pip (#31)
+
 ## v0.3.3 (2023-08-22)
 
 ### Fix
