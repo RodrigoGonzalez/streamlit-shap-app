@@ -1,10 +1,11 @@
-# Streamlit SHAP App
+# SHAP App
 
 ## Introduction
 
 This app demonstrates how to use the
 [SHAP](https://shap.readthedocs.io/en/latest/index.html)
-library to explain models.
+library to explain models employing the popular `streamlit`
+framework for the application frontend.
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <div style="width: 45%;">
@@ -28,16 +29,58 @@ In the context of machine learning, SHAP values provide a measure for
 
 ## Installation
 
-This project was created using poetry. To install the dependencies, run the
+The package can be installed using `pip`:
+
+```bash
+pip install streamlit-shap-app
+```
+
+
+## Development
+
+### Clone Repository
+
+```bash
+git clone git@github.com:RodrigoGonzalez/streamlit-shap-app.git
+```
+
+### Poetry Installation
+
+This project was created using poetry. To install poetry, run the following:
+
+```bash
+curl -sSL https://install.python-poetry.org | python -
+```
+
+On MacOS, you can also install poetry using Homebrew:
+
+```bash
+brew install poetry
+```
+
+**Verify Installation**: You can verify the installation by running:
+
+```bash
+poetry --version
+```
+
+### Project Dependencies
+
+To install the dependencies, run the
 following command:
 
 ```bash
-poetry env use 3.10
-poetry install
+make setup
 ```
 
-I have also included a setup.py file for those who prefer to use pip. To install
-the dependencies, run the following command:
+This generates a virtual environment and installs the
+dependencies listed in the `pyproject.toml` file.
+
+### Install Dependencies Using Pip
+
+I have also included a setup.py file for those who prefer
+to use pip. To install the dependencies, run the following
+command:
 
 ```bash
 pip install -r requirements.txt
@@ -46,10 +89,98 @@ pip install -r requirements.txt
 ## Running Application
 
 ```bash
-streamlit run src/shap_app/app.py
+poetry run streamlit run src/shap_app/app.py
 ```
 
-## Summary
+## The Interpretation of Machine Learning Models aka Explainable AI
+A Vital Component for Ensuring Transparency and Trustworthiness
+
+In a world increasingly driven by automated decision-making,
+the capacity to comprehend and articulate the underlying
+mechanisms of machine learning models is paramount. This
+understanding, referred to as model interpretability,
+enables critical insight into the actions and
+justifications of algorithmic systems that profoundly
+impact human lives.
+
+### **Key Aspects of Interpretability**:
+
+Interpretability plays a vital role,
+enhancing understanding and communication.
+
+1. **Model Debugging**:
+    - Analytical Evaluation
+    - What instigated this model's error?
+    - What adjustments are necessary to enhance the model's performance?
+
+2. **Human-AI Collaboration**:
+    - Mutual Understanding
+    - How can users interpret and place faith in the model's resolutions?
+
+3. **Regulatory Compliance**:
+    - Legal Assurance
+    - Does the model adhere to statutory mandates and ethical guidelines?
+
+### **Interpretability in the Model Lifecycle**:
+
+The interpretability facet of the model training and
+deploying pipeline instrumental during the "diagnosis"
+phase of the model lifecycle workflow. AI Explainability
+elucidates the model's predictions through
+human-intelligible descriptions, offering multifaceted
+insights into model behavior:
+
+-   **Global Explanations**: E.g., What variables shape
+    the comprehensive conduct of a loan allocation model?
+
+-   **Local Explanations**: E.g., What rationale led to
+    the approval or denial of a specific customer's loan
+    application?
+
+Observation of model explanations for subgroups of data
+points is invaluable, particularly when assessing fairness
+in predictions for specific demographic classifications,
+for example.
+
+### **Specific Applications of Interpretability**:
+
+The interpretability component leverages the SHAP
+(SHapley Additive exPlanations) package, a robust tool
+that facilitates the analytical understanding of model
+behavior, providing insights into feature importance and
+contributions to individual predictions
+
+Utilize interpretability to:
+
+-   Ascertain the reliability of AI system predictions by
+    recognizing significant factors.
+
+-   Strategize model debugging by first comprehending its
+    functionality and discerning between legitimate relationships
+    and misleading associations.
+
+-   Detect potential biases by analyzing the basis of
+    predictions on sensitive or highly correlated attributes.
+
+-   Foster user confidence through local explanations
+    that explain decision outcomes.
+
+-   Execute regulatory audits to authenticate models
+    and supervise the influence of model determinations on human
+    interests.
+
+The nuanced task of model interpretation extends beyond mere
+technical necessity; it fosters transparency,
+accountability, and trust in AI systems. Embracing
+interpretability ensures that decisions derived from
+artificial intelligence are not only proficient but
+principled, aligning with both legal obligations and
+ethical values.
+
+
+## Summary of Project
+
+
 
 ### Motivation
 
@@ -122,18 +253,13 @@ cleaning, feature engineering, model building, and finally model explanation
 using SHAP values. The codebase is modular and follows good software engineering
 practices.
 
+## Project Takeaways
 
-## Results
-Highlight the results you got from your model or system and why you think this
-happened. Were there any outliers or anomalies in your data that affected the
-results? Can you explain why these occurred, even if they weren’t expected?
-
-## Takeaways
-
-Finally, you’ll want to leave the readers with some takeaways. Did anything
-surprising happen during this process that changed how you think about machine
-learning at large? Did any personal growth occur as a result of working on
-this project? What would you do differently next time?
+In writing this app, the motivation was to explore and use
+streamlit and the SHAP library. Streamlit for building web
+applications, and SHAP for understanding decision-making
+within models. The following section will outline key
+takeaways from working with these tools.
 
 ### Streamlit
 
@@ -153,12 +279,48 @@ Overall, I think Streamlit is a great tool to have at your disposal, and
 the problem it solves, getting something up and running quickly, is what it
 excels at.
 
+### SHAP Package
+
+In this project, I used the
+[SHAP (SHapley Additive exPlanations)](https://shap.readthedocs.io/en/latest/index.html)
+library to interpret complex machine learning models.
+
+The experience with SHAP in the project revealed a few
+advantages. The interpretability it provided turned
+previously black-box models into useful explanations,
+making it easy to understand the relative contributions of
+each feature. Its compatibility with various machine
+learning models and good integration with `streamlit`
+allowed for interactive visualizations. Moreover,
+SHAP's ability to uncover the influence of each feature
+through easy to generate plots, is especially useful for
+explaining predictions to non-technical stakeholders.
+
+However, the implementation was not without challenges.
+SHAP's computational intensity, especially with larger
+datasets and complex models, required careful optimization.
+While SHAP values were insightful, interpreting them can
+still be challenging, especially for non-technical audiences.
+The beautiful visualizations, although informative, can
+become overwhelming when dealing with a large number of
+features, but feature selection techniques and careful
+design can be utilized to keep the user experience
+interesting.
+
+
+Using the SHAP package was overwhelmingly positive, with
+the pros far outweighing the cons. It's easy to see that
+this library can be used to bridge the gap between machine
+learning experts and other stakeholders. Any challenges
+using the package can be dealt with, with careful
+consideration and planning, and a thorough understanding
+of the dataset.
 
 
 ## Relevant Literature and Links
 
 Many of the ideas implemented in this repository were first detailed in the
-following articles, papers, and tutorials:
+following blog posts, papers, and tutorials:
 
 1. [A Unified Approach to Interpreting Model Predictions](https://arxiv.org/abs/1705.07874)
 2. [Consistent Individualized Feature Attribution for Tree Ensembles](https://arxiv.org/abs/1802.03888)
@@ -174,9 +336,16 @@ following articles, papers, and tutorials:
 12. [Interpretable Machine Learning with SHAP](https://christophm.github.io/interpretable-ml-book/shap.html)
 13. [Understanding SHAP Values](https://towardsdatascience.com/understanding-shap-values-1c1b7a0e57b7)
 14. [Kaggle - Machine Learning Explainability](https://www.kaggle.com/learn/machine-learning-explainability)
-15. [Medium - SHAP in Practice](https://medium.com/@gabrieltseng/interpreting-complex-models-with-shap-values-1c187db6ec83)
-16. [Azure Machine Learning Interpretability](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-machine-learning-interpretability)
+15. [SHAP Values Explained Exactly How You Wished Someone Explained to You](https://medium.com/towards-data-science/shap-explained-the-way-i-wish-someone-explained-it-to-me-ab81cc69ef30)
+16. [Interpreting complex models with SHAP values](https://medium.com/@gabrieltseng/interpreting-complex-models-with-shap-values-1c187db6ec83)
 17. [Shapley Values Wikipedia Page](https://en.wikipedia.org/wiki/Shapley_value)
+
+
+## SHAP App Limitations
+
+-   This plugin is currently only compatible with Python 3.10+
+-   Full documentation is not yet available
+-   Does not support user defined datasets and packages yet.
 
 
 ## Contributing

@@ -1,12 +1,26 @@
 [tool.poetry]
-name = "shap_app"
+name = "shap-app"
 version = "0.2.0"
-description = "A project"
+description = "A comprehensive application for interpreting machine learning models using SHAP values"
 authors = ["Rodrigo Gonzalez  <r@rodrigo-gonzalez.com>"]
 license = "MIT"
 readme = "README.md"
 
-# Standard classifiers at https://pypi.org/classifiers/
+keywords = [
+    "SHAP",
+    "Machine Learning",
+    "Model Interpretation",
+    "Python",
+    "Data Science",
+    "AI",
+    "Artificial Intelligence",
+    "Feature Importance",
+    "Game Theory",
+    "Predictive Modeling",
+    "Data Analysis",
+    "Modeling"
+]
+
 classifiers = [
     "Development Status :: 2 - Beta",
     "Intended Audience :: Developers",
@@ -27,7 +41,7 @@ packages = [
 
 
 [tool.poetry.scripts]
-shap-app = 'shap_app.__main__:main'
+shap-app = 'shap_app.__main__:cli'
 
 
 [tool.poetry.dependencies]
@@ -38,7 +52,7 @@ streamlit-option-menu = "^0.3.6"
 streamlit-shap = "^1.0.2"
 pydantic = "^2.2.1"
 llvmlite = "^0.40.1"
-pyarrow = "^12.0.1"
+#pyarrow = "^12.0.1"
 numpy = ">=1.21,<1.25"
 pandas = "^2.0.3"
 shap = "^0.42.1"
@@ -48,26 +62,27 @@ scikit-learn = "^1.3.0"
 feature-engine = "^1.6.1"
 xgboost = "^1.7.6"
 catboost = "^1.2"
-lightgbm = "^3.3.5"
 protobuf = "^4.24.1"
-google-api-python-client = "^2.97.0"
-google-auth = "^2.22.0"
-google-auth-httplib2 = "^0.1.0"
+#google-api-python-client = "^2.97.0"
+#google-auth = "^2.22.0"
+#google-auth-httplib2 = "^0.1.0"
 altair = "^5.0.1"
 click = "^8.1.7"
 pdfkit = "^1.0.0"
-wkhtmltopdf = "^0.2"
+#wkhtmltopdf = "^0.2"
 vega-datasets = "^0.9.0"
 streamlit-tags = "^1.2.8"
-python-dotenv = "^1.0.0"
+#python-dotenv = "^1.0.0"
 pydantic-settings = "^2.0.3"
-pendulum = "^2.1.2"
+#pendulum = "^2.1.2"
 joblib = "^1.3.2"
-seaborn = "^0.12.2"
+#seaborn = "^0.12.2"
 strictyaml = "^1.7.3"
 cmake = "^3.27.2"
 matplotlib = "^3.7.2"
 typer = "^0.9.0"
+cython = "^3.0.0"
+lightgbm = "^4.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -79,6 +94,7 @@ autoflake = "^2.2.0"
 pyupgrade = "^3.10.1"
 flake8 = "^6.1.0"
 commitizen = "^3.6.0"
+pip-tools = "^7.3.0"
 
 
 [tool.poetry.group.mypy.dependencies]
@@ -96,7 +112,7 @@ pytest-randomly = "^3.15.0"
 
 [tool.poetry.group.docs.dependencies]
 mkdocs = "^1.5.2"
-mkdocs-material = "^9.1.21"
+mkdocs-material = "^9.2.3"
 mkdocstrings = "^0.22.0"
 
 
@@ -131,7 +147,7 @@ known_first_party = ["shap_app"]
 
 [tool.black]
 line-length = 100
-target-version = ["py39", "py310", "py311"]
+target-version = ["py310", "py311"]
 include = '\.pyi?$'
 exclude = '''
     /(
@@ -179,7 +195,7 @@ warn_unreachable = true
 # Misc
 pretty = true
 exclude = [
-    "example_repos",
+    "scripts",
     "tests",
 ]
 

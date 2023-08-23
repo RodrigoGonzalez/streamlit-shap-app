@@ -1,4 +1,6 @@
-This site contains the project documentation for the `Python Project Johannes`
+This site contains the project documentation for the `SHAP App`
+
+(NOT DONE)
 
 ## Table of Contents
 
