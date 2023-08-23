@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.7 (2023-08-23)
+
+### Fix
+
+- **shap-app**: the feature impact charts were not rendering properly (#40)
+
 ## v0.3.6 (2023-08-23)
 
 ### Fix
