@@ -32,7 +32,7 @@ In the context of machine learning, SHAP values provide a measure for
 The package can be installed using `pip`:
 
 ```bash
-pip install streamlit-shap-app
+pip install shap-app
 ```
 
 
