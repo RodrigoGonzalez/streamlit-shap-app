@@ -39,7 +39,7 @@ packages = [
     { include = "shap_app", from = "src" }
 ]
 
-include = ["README.md", "LICENSE", "CHANGELOG.md"]
+include = ["README.md", "LICENSE", "CHANGELOG.md", "assets/shap_header.svg"]
 
 
 [tool.poetry.scripts]
