@@ -234,7 +234,11 @@ new-branch: check-branch-name  ## Create a new branch
 new-feat-branch: check-branch-name  ## Create a new feature branch
 	git checkout -b feat/$(BRANCH)_$(commit_count)
 
-.PHONY: check-branch-name new-branch new-feat-branch
+new-version-branch:  ## Create a new version branch
+	NEW_VERSION=$(shell poetry run cz bump --dry-run | grep 'bump: version' | awk -F ' ' '{print $$NF}'); \
+	git checkout -b v$$NEW_VERSION
+
+.PHONY: check-branch-name new-branch new-feat-branch new-version-branch
 
 # =============================================================================
 # ADDITIONAL
