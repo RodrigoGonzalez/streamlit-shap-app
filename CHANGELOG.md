@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.3 (2023-08-22)
+
+### Fix
+
+- **pyproject**: add images used to distribution (#28)
+
 ## v0.3.2 (2023-08-22)
 
 ### Fix
