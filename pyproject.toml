@@ -39,6 +39,8 @@ packages = [
     { include = "shap_app", from = "src" }
 ]
 
+include = ["README.md", "LICENSE", "CHANGELOG.md"]
+
 
 [tool.poetry.scripts]
 shap-app = 'shap_app.__main__:cli'
