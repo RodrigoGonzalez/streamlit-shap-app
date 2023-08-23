@@ -114,7 +114,7 @@ def _generate_shap_summary_plot(dataset: pd.DataFrame, shap_values: np.ndarray) 
     # Get the current matplotlib figure
     summary_plot_fig = plt.gcf()
     # Display the matplotlib figure in Streamlit
-    st.pyplot(summary_plot_fig)
+    st.pyplot(summary_plot_fig, clear_figure=True)
 
 
 def _generate_shap_dependence_plot(dataset: pd.DataFrame, shap_values: np.ndarray) -> None:
@@ -162,4 +162,4 @@ def _generate_shap_dependence_plot(dataset: pd.DataFrame, shap_values: np.ndarra
     shap.dependence_plot(feature, shap_values, dataset, show=False, ax=ax)
 
     # Display the matplotlib figure in Streamlit
-    st.pyplot(fig)
+    st.pyplot(fig, clear_figure=True)
