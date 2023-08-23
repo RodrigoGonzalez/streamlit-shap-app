@@ -26,7 +26,7 @@ def main(
     This function starts the Streamlit SHAP App.
     """
     typer.echo("Starting Streamlit SHAP App...")
-    os.system("poetry run streamlit run src/shap_app/__main__.py")
+    os.system("poetry run streamlit run src/shap_app/app.py")
 
 
 def cli():
