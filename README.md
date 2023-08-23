@@ -1,4 +1,7 @@
 # SHAP App
+[![PyPI Package latest release](https://img.shields.io/pypi/v/shap-app.svg?style=flat-square)](https://pypi.org/project/shap-app/)
+[![Supported versions](https://img.shields.io/pypi/pyversions/shap-app.svg?style=flat-square)](https://pypi.org/project/shap-app/)
+[![code style black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ## Introduction
 
