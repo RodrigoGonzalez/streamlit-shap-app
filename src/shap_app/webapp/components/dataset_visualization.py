@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import shap
 import streamlit as st
-from streamlit_shap import st_shap
 
 shap.initjs()
 plt.style.use("ggplot")
@@ -65,5 +64,14 @@ def raw_dataset_insights(dataset: pd.DataFrame) -> None:
         histograms for each feature in the dataset.
     """
     num_bins = int(np.sqrt(dataset.shape[0]))
-    dataset.hist(bins=num_bins, figsize=(12, 12))
-    st_shap(plot=None)
+
+    # Create a new matplotlib figure
+    fig, ax = plt.subplots()
+
+    # Generate the SHAP dependence plot
+    dataset.hist(bins=num_bins, figsize=(12, 12), ax=ax)
+
+    # Display the matplotlib figure in Streamlit
+    st.pyplot(fig, clear_figure=True)
+
+    # st_shap(plot=None)
