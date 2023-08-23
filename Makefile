@@ -103,9 +103,8 @@ commit: pre-commit  ## Commit changes
 	./scripts/commit.sh
 
 bump:  ## Bump version and update changelog
-	@echo "+ $@"
-	@poetry run cz bump --changelog --check-consistency --annotated-tag
-	@git push --follow-tags
+	poetry run cz bump --changelog --check-consistency --annotated-tag --retry
+	git push -u origin HEAD --follow-tags
 
 .PHONY: pre-commit pre-commit-tool commit bump
 
