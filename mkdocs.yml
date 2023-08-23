@@ -1,4 +1,4 @@
-site_name: Python Project
+site_name: SHAP App
 
 docs_dir: docs
 
@@ -20,7 +20,7 @@ plugins:
 
 nav: [ ]
 
-repo_url: https://github.com/RodrigoGonzalez/project
+repo_url: https://github.com/RodrigoGonzalez/streamlit-shap-app
 
 # to navigate with `/site` content correctly
 use_directory_urls: false

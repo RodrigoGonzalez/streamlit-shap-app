@@ -65,14 +65,21 @@ update-deps: pip-upgrade poetry-update pre-commit-autoupdate  ## Update dependen
 upgrade-deps: update-deps ## Upgrade dependencies to the latest versions
 	# https://github.com/MousaZeidBaker/poetry-plugin-up
 	poetry up
+	$(MAKE) freeze-deps
+
+
+.PHONY: update-deps upgrade-deps local pip-upgrade poetry-update pre-commit-autoupdate
 
 local: setup update-deps  ## Locally install the package
-	portfolio-projects --help
+	poetry run python src/shap_app --help
 
 activate:  ## Activate the virtual environment
 	poetry shell
 
-.PHONY: update-deps upgrade-deps local pip-upgrade poetry-update pre-commit-autoupdate
+freeze-deps:
+	poetry run pip-compile --upgrade --output-file=requirements.txt --resolver=backtracking --verbose
+
+.PHONY: activate freeze-deps local
 
 # =============================================================================
 # DEVELOPMENT
