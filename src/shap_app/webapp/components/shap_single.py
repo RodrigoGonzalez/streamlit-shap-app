@@ -173,7 +173,7 @@ def individual_tree_shap_plots(
         )
 
         # Display the matplotlib figure in Streamlit
-        st.pyplot(waterfall_fig)
+        st.pyplot(waterfall_fig, clear_figure=True)
 
         st.markdown(
             "Where $E[f(x)]$ is the Expected Value of the model output for the "
