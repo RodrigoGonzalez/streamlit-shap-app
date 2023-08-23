@@ -73,7 +73,7 @@ To install the dependencies, run the
 following command:
 
 ```bash
-make setup
+make local
 ```
 
 This generates a virtual environment and installs the
@@ -91,8 +91,17 @@ pip install -r requirements.txt
 
 ## Running Application
 
+To run simply type
+
 ```bash
-poetry run streamlit run src/shap_app/app.py
+shap-app
+```
+
+To see all the options type (currently limited to only
+running the application.)
+
+```bash
+shap-app --help
 ```
 
 ## The Interpretation of Machine Learning Models aka Explainable AI
