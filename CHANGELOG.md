@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.5 (2023-08-23)
+
+### Fix
+
+- **main-app**: update image rendering to automatically resize (#35)
+
 ## v0.3.4 (2023-08-23)
 
 ### Fix
