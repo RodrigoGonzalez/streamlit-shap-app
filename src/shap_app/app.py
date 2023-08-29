@@ -5,7 +5,6 @@ from streamlit_option_menu import option_menu
 
 from shap_app.main import MAIN_DIR
 from shap_app.webapp.components.dataset_summary import raw_dataset_summary
-from shap_app.webapp.components.dataset_visualization import raw_dataset_insights
 from shap_app.webapp.components.dataset_visualization import visualize_data_introduction
 from shap_app.webapp.components.eda_correlations import feature_analysis
 from shap_app.webapp.components.eda_correlations import generate_correlation_tables
@@ -59,6 +58,8 @@ with st.sidebar:
         - [Exploratory Data Analysis](#exploratory-data-analysis-eda)
             - [Dataset Summary Statistics](#dataset-summary-statistics)
             - [Visualize the Data to Gain Insights](#visualize-the-data-to-gain-insights)
+            - [Univariate Analysis](#univariate-analysis)
+            - [Bivariate Analysis](#bivariate-analysis)
         - [SHAP Introduction](#shap-shapley-additive-explanations)
         - [Visualizing SHAP Values](#visualizing-shap-values-using-tree-shap)
         - [Visualizing Individual Data Points]({individual_datapoints})
@@ -97,6 +98,7 @@ set_session_state()
 
 # Streamlit app
 st.markdown("# Introduction to Explainable AI")
+
 col1, col2 = st.columns(2)
 
 with col1:
@@ -207,6 +209,11 @@ st.markdown("---")
 
 # Dataset Summary
 st.markdown("### Dataset Summary Statistics")
+st.markdown(
+    f"""Shape of the dataset: {st.session_state["df"].shape[0]} rows
+    and {st.session_state["df"].shape[1]} columns.
+    """
+)
 with st.expander("Model Features and Data Summary"):
     raw_dataset_summary(st.session_state["df"])
 st.markdown("---")
@@ -214,12 +221,12 @@ st.markdown("---")
 
 # EDA Visualization
 st.markdown("### Visualize the Data to Gain Insights")
-visualize_data_introduction()
-with st.expander("Visualize Individual Features with Histograms"):
-    # Visualize all features and target
-    raw_dataset_insights(st.session_state["df"])
-with st.expander("Examining Correlations"):
-    feature_analysis()
+visualize_data_introduction(st.session_state["df"])
+# with st.expander("Visualize Individual Features with Histograms"):
+#     # Visualize all features and target
+#     raw_dataset_insights(st.session_state["df"])
+feature_analysis(st.session_state["df"])
+with st.expander("Detailed Correlation Information"):
     generate_correlation_tables(st.session_state["df"])
 st.markdown("---")
 

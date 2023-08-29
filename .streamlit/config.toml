@@ -1,0 +1,10 @@
+[server]
+enableCORS = false
+enableXsrfProtection = false
+
+[theme]
+primaryColor="#003153"
+backgroundColor="#fafafa"
+secondaryBackgroundColor="#e4e4e4"
+textColor="#000326"
+font="sans serif"
