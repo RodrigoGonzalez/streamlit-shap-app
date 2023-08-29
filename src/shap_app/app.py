@@ -80,12 +80,95 @@ set_session_state()
 
 # Streamlit app
 st.markdown("# Introduction to Explainable AI")
-st.markdown(
-    """
-    This app demonstrates how to use the [SHAP](https://shap.readthedocs.io/en/latest/index.html)
-    library to explain models.
-    """
-)
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown(
+        """
+        This app demonstrates how to use the
+        [SHAP](https://shap.readthedocs.io/en/latest/index.html)
+        library to explain models. The SHAP (SHapley Additive exPlanations)
+        library is a powerful tool for interpreting machine learning models.
+        It helps turn these often "black-box" algorithms into transparent
+        systems that you can understand and trust.
+
+        While the tool is computationally demanding, especially with large sets
+        of data, the insights it provides are invaluable. It helps you
+        understand how each factor in your data contributes to the model's
+        prediction, offering a level of transparency that's crucial in today's
+        data-driven world.
+        """
+    )
+
+with col2:
+    st.image(
+        "assets/ai_explainability.jpg",
+        caption=("AI Explainability."),
+        use_column_width=True,
+    )
+    st.markdown(
+        """
+        Image source: [Neo4j](https://neo4j.com/blog/ai-graph-technology-ai-explainability/)
+        """
+    )
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown(
+        """
+        ### Project Overview
+
+        This project showcases a user-friendly app designed to make the complex
+        world of machine learning easy to understand for anyone. Using a method
+        called Shapley values, the app helps explain how different factors or
+        "features" influence the outcome predicted by a machine learning model.
+        The app is built using Streamlit, a tool that allows for a highly
+        interactive and engaging user experience, complete with dynamic images
+        and graphs.
+
+        ### Project Motivation
+
+        The driving force behind this project is to demystify machine learning
+        models, making them not just understandable but also actionable for
+        decision-making in various fields. Whether you're in healthcare,
+        finance, or even journalism, understanding why a machine learning model
+        makes a particular prediction can be crucial for making informed
+        decisions.
+
+        ### Relevance to Non-Technical Audiences
+
+        This project is a prime example of my approach to software development,
+        which focuses on creating applications that are not only scalable and
+        efficient but also user-friendly and easy to understand. It's
+        particularly relevant in today's world where machine learning and
+        artificial intelligence are becoming increasingly integrated into our
+        daily lives, making it more important than ever to understand how these
+        technologies work and make decisions.
+
+        By using this app, individuals, businesses, and organizations can gain
+        a better understanding of machine learning models, empowering them to
+        make more informed decisions based on transparent and interpretable
+        data.
+        """
+    )
+
+with col2:
+    st.image(
+        "assets/explainable_ai_info.jpeg",
+        caption=("Why are we interested in explainable AI?"),
+        use_column_width=True,
+    )
+    link = (
+        "[birlasoft](https://www.birlasoft.com/articles/demystifying-"
+        "explainable-artificial-intelligence)"
+    )
+    st.markdown(
+        f"""
+        Image source: {link}
+        """
+    )
+
 st.markdown("---")
 
 
