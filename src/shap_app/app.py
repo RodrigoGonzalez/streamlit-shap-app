@@ -49,6 +49,23 @@ with st.sidebar:
         default_index=0,
     )
 
+    individual_datapoints = "#visualizing-individual-data-points-and-shap-values-using-tree-shap"
+    st.markdown(
+        f"""
+        ##  Content Directory
+
+        - [Introduction](#introduction-to-explainable-ai)
+        - [Project Overview](#project-overview)
+        - [Exploratory Data Analysis](#exploratory-data-analysis-eda)
+            - [Dataset Summary Statistics](#dataset-summary-statistics)
+            - [Visualize the Data to Gain Insights](#visualize-the-data-to-gain-insights)
+        - [SHAP Introduction](#shap-shapley-additive-explanations)
+        - [Visualizing SHAP Values](#visualizing-shap-values-using-tree-shap)
+        - [Visualizing Individual Data Points]({individual_datapoints})
+        - [Feature Importance](#summarize-the-impact-of-all-features)
+        """
+    )
+
 
 # Sidebar information
 sidebar_info()
@@ -108,17 +125,22 @@ with col2:
     )
     st.markdown(
         """
-        Image source: [Neo4j](https://neo4j.com/blog/ai-graph-technology-ai-explainability/)
+        Image Source: [Neo4j](https://neo4j.com/blog/ai-graph-technology-ai-explainability/).
         """
     )
+
+st.markdown("---")
+st.markdown(
+    """
+    ## Project Overview
+    """
+)
 
 col1, col2 = st.columns(2)
 
 with col1:
     st.markdown(
         """
-        ### Project Overview
-
         This project showcases a user-friendly app designed to make the complex
         world of machine learning easy to understand for anyone. Using a method
         called Shapley values, the app helps explain how different factors or
@@ -165,7 +187,7 @@ with col2:
     )
     st.markdown(
         f"""
-        Image source: {link}
+        Image source: {link}.
         """
     )
 
