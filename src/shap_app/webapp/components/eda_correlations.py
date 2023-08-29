@@ -10,7 +10,7 @@ from matplotlib import pyplot as plt
 matplotlib.use("Agg")
 
 
-def feature_analysis() -> None:
+def feature_analysis(dataset: pd.DataFrame) -> None:
     """
     This function generates the feature analysis section of the EDA page.
 
@@ -24,38 +24,97 @@ def feature_analysis() -> None:
     None
     """
     # TODO: Add data_source: str | None = "boston_housing"
-    st.markdown("### Feature Analysis")
     st.markdown(
         """
-        Data Science involves the formulation of certain assumptions and
-        hypotheses about the dataset, which are then empirically tested through
-        various analytical procedures. Based on an initial examination of the
-        dataset, we can form the following relationships for the following
-        features:
+        ## Bivariate Analysis
 
-        - The 'RM' feature, representing the average number of rooms per dwelling,
-          is likely to exhibit a direct correlation with the housing price. The
-          rationale behind this assumption is that larger houses, characterized
-          by a higher number of rooms, typically accommodate more individuals
-          and are generally priced higher due to increased demand. Hence, 'RM'
-          and housing prices are hypothesized to be directly proportional.
+        In this section, we will explore the relationship between the target
+        variable (the variable we want to predict) and each feature (input
+        variable) in the dataset. This analysis is crucial as it helps us
+        understand how each feature influences the target variable. It also
+        aids in identifying any unusual data points, known as outliers, or any
+        irregularities in the data.
 
-        - The 'LSTAT' feature, indicating the percentage of lower status
-          population, is hypothesized to have an inverse relationship with the
-          housing price. The underlying premise is that neighborhoods with a
-          higher proportion of lower status population are likely to have lower
-          purchasing power, which in turn, could lead to lower housing prices.
-          Thus, 'LSTAT' and housing prices are expected to be inversely proportional.
+        The insights derived from this analysis can guide us in data
+        preprocessing steps such as feature transformation, which can make the
+        data more suitable for modeling and potentially improve the performance
+        of our predictive models.
 
-        - The 'PTRATIO' feature, denoting the pupil-teacher ratio, is also
-          anticipated to be inversely proportional to the housing price. A
-          higher pupil-teacher ratio might suggest a lower number of schools
-          in the neighborhood, possibly due to lower tax income. This could be
-          indicative of lower average income in the neighborhood, which could
-          potentially lead to lower housing prices. Therefore, 'PTRATIO' and
-          housing prices are hypothesized to be inversely proportional.
+        ### Correlation Analysis
+
+        Correlation analysis is a statistical method used to evaluate the
+        strength and direction of the relationship between two variables. The
+        correlation coefficient ranges from -1 to 1. A value close to 1 implies
+        a strong positive relationship, a value close to -1 implies a strong
+        negative relationship, and a value close to 0 implies no
+        relationship.
+
+        By examining the correlation between the target variable and each
+        feature, we can identify which features are most likely to influence
+        the target variable. This can be particularly useful in feature
+        selection for our predictive model.
         """
     )
+
+    pearson_corr = generate_correlation(dataset)
+
+    col1, col2 = st.columns([1, 2])
+
+    with col1:
+        col1.header("Correlation Summary")
+        st.markdown("""Correlations between target and all features.""")
+        st.markdown(
+            """
+            Data Science involves the formulation of certain assumptions and
+            hypotheses about the dataset, which are then empirically tested through
+            various analytical procedures. Based on an initial examination of the
+            dataset, we can form the following relationships for the following
+            features:
+
+            - The 'RM' feature, representing the average number of rooms per dwelling,
+              is likely to exhibit a direct correlation with the housing price. The
+              rationale behind this assumption is that larger houses, characterized
+              by a higher number of rooms, typically accommodate more individuals
+              and are generally priced higher due to increased demand. Hence, 'RM'
+              and housing prices are hypothesized to be directly proportional.
+
+            - The 'LSTAT' feature, indicating the percentage of lower status
+              population, is hypothesized to have an inverse relationship with the
+              housing price. The underlying premise is that neighborhoods with a
+              higher proportion of lower status population are likely to have lower
+              purchasing power, which in turn, could lead to lower housing prices.
+              Thus, 'LSTAT' and housing prices are expected to be inversely proportional.
+
+            - The 'PTRATIO' feature, denoting the pupil-teacher ratio, is also
+              anticipated to be inversely proportional to the housing price. A
+              higher pupil-teacher ratio might suggest a lower number of schools
+              in the neighborhood, possibly due to lower tax income. This could be
+              indicative of lower average income in the neighborhood, which could
+              potentially lead to lower housing prices. Therefore, 'PTRATIO' and
+              housing prices are hypothesized to be inversely proportional.
+            """
+        )
+
+    with col2:
+        col2.header("Pearson Correlation Heatmap")
+
+        # Create a new matplotlib figure
+        fig, ax = plt.subplots()
+
+        # Generate the heatmap
+        sns.heatmap(
+            pearson_corr.values,
+            cbar=True,
+            annot=True,
+            square=True,
+            fmt=".2f",
+            annot_kws={"size": 5},
+            yticklabels=pearson_corr.columns,
+            xticklabels=pearson_corr.columns,
+            cmap="coolwarm",
+            ax=ax,
+        )
+        st.pyplot(fig, clear_figure=True)
 
 
 def generate_correlation(
@@ -104,41 +163,163 @@ def generate_correlation_tables(
         "spearman".
     """
     pearson_corr = generate_correlation(dataset)
+    kendall_corr = generate_correlation(dataset, method="kendall")
+    spearman_corr = generate_correlation(dataset, method="spearman")
+    st.header("Correlation Summaries")
+    st.markdown(
+        """
+        Correlation is a statistical measure that describes the degree to which
+        two variables change together. If one variable tends to go up when the
+        other goes up, there is a positive correlation between them.
+        Conversely, if one variable tends to go down when the other goes up,
+        there is a negative correlation.
+        """
+    )
 
-    summary, heat_map = st.columns([1, 2])
-    with summary:
-        summary.header(f"{method.capitalize()} Correlation Summary")
-        st.markdown(f"""{method.capitalize()} Correlations between target and all features.""")
-        # TODO: Add height and width parameters to st.dataframe()
-        st.dataframe(pearson_corr["TARGET"].sort_values(ascending=False))
+    st.markdown("### Pearson Correlation")
+    col1, col2 = st.columns([0.7, 0.3])
 
-    with heat_map:
-        heat_map.header(f"{method.capitalize()} Correlation Heatmap")
-
-        # Create a new matplotlib figure
-        fig, ax = plt.subplots()
-
-        # Generate the heatmap
-        sns.heatmap(
-            pearson_corr.values,
-            cbar=True,
-            annot=True,
-            square=True,
-            fmt=".2f",
-            annot_kws={"size": 5},
-            yticklabels=pearson_corr.columns,
-            xticklabels=pearson_corr.columns,
-            cmap="coolwarm",
-            ax=ax,
+    with col1:
+        pearson = (
+            "https://latex.codecogs.com/svg.image?r=\\frac{\\sum_{i=1}^{n}(x_i-\\bar"
+            "{x})(y_i-\\bar{y})}{\\sqrt{\\sum_{i=1}^{n}(x_i-\\bar{x})^2\\sum_{i=1}^{n}"
+            "(y_i-\\bar{y})^2}}"
         )
-
-        # Display the matplotlib figure in Streamlit
-        st.pyplot(fig, clear_figure=True)
-
-        # st_shap(plot=None)
-
-    if st.checkbox("Display detailed feature correlations"):
         st.markdown(
-            f"""{method.capitalize()} Correlations between all features and target variable."""
+            f"""
+            Pearson Correlations between target and all features.
+
+            **Mathematical Formula**:
+
+            <div align="center">
+                <img src="{pearson}" title="Pearson Correlation" />
+            </div>
+
+            **What it Measures**:
+
+            Pearson's correlation coefficient measures
+            the linear relationship between two datasets. The values range
+            from -1 to 1, where -1 indicates a perfect negative linear
+            relationship, 1 indicates a perfect positive linear relationship,
+            and 0 indicates no linear relationship.
+
+            **Typical Use-Cases**:
+
+            Widely used in finance for risk assessment,
+            in psychology to assess relationships between variables, and in
+            machine learning feature selection.
+
+            """,
+            unsafe_allow_html=True,
         )
+
+    with col2:
+        st.dataframe(pearson_corr["TARGET"].sort_values(ascending=False), use_container_width=False)
+
+    st.markdown("### Kendall Correlation (Kendall's Tau)")
+    col1, col2 = st.columns([0.7, 0.3])
+
+    with col1:
+        kendall = (
+            "https://latex.codecogs.com/svg.image?\\tau=\\frac{(n_{\\text{concordant}}"
+            "-n_{\\text{discordant}})}{\\sqrt{(n_{\\text{concordant}}&plus;n_{\\text"
+            "{discordant}})(n_{\\text{concordant}}&plus;n_{\\text{ties}})}}"
+        )
+
+        st.markdown(
+            f"""
+            Kendall Correlations between target and all features.
+
+            **Mathematical Formula**:
+
+            <div align="center">
+                <img src="{kendall}" title="Kendall Correlation" />
+            </div>
+
+            \n
+            **What it Measures**:
+
+            Kendall's Tau assesses the strength and
+            direction of the ordinal association between two measured
+            quantities. It takes into account the ranks of the values and
+            deals well with data that has ties.
+
+            **Typical Use-Cases**:
+
+            Commonly used in non-parametric statistics,
+            for example, in social science research, to measure ordinal
+            associations, and in time-series analysis.
+
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with col2:
+        st.dataframe(kendall_corr["TARGET"].sort_values(ascending=False), use_container_width=False)
+
+    st.markdown("### Spearman Correlation (Spearman's Rho)")
+    col1, col2 = st.columns([0.7, 0.3])
+
+    with col1:
+        spearman = (
+            "https://latex.codecogs.com/svg.image?\\rho=1-\\frac{6\\sum&space;d_i^2}{n(n^2-1)}"
+        )
+        st.markdown(
+            f"""
+            Spearman Correlations between target and all features.
+
+            **Mathematical Formula**:
+
+            <div align="center">
+                <img src="{spearman}" title="Spearman Correlation" />
+            </div>
+
+            where d<sub><i>i</i></sub> is the difference between the ranks of
+            each observation.
+
+            **What it Measures**:
+
+            Spearman's Rho measures the strength and
+            direction of the monotonic relationship between two datasets.
+            Unlike Pearson, it does not assume that the relationship is linear,
+            nor does it require the variables to be measured on interval
+            scales.
+
+            **Typical Use-Cases**:
+
+            Used when the data are not normally
+            distributed or when the data are ordinal in nature.
+
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with col2:
+        st.dataframe(
+            spearman_corr["TARGET"].sort_values(ascending=False), use_container_width=False
+        )
+
+    st.markdown(
+        """
+        ### Summary
+
+        - **Pearson**: Best for measuring linear relationships between interval
+            or ratio-scaled variables.
+        - **Kendall**: Good for ordinal data and when you have a small sample
+            size. It's computationally more intensive than Pearson or Spearman.
+        - **Spearman**: Useful for ordinal data or when the data doesn't meet
+            the normality assumption. It's less sensitive to outliers compared
+            to Pearson.
+        """
+    )
+    st.markdown("---")
+
+    if st.checkbox("\n Display detailed feature correlation tables"):
+        st.markdown("""Pearson Correlations between all features and target variable.""")
         st.dataframe(pearson_corr)
+
+        st.markdown("""Kendall Correlations between all features and target variable.""")
+        st.dataframe(kendall_corr)
+
+        st.markdown("""Spearman Correlations between all features and target variable.""")
+        st.dataframe(spearman_corr)
