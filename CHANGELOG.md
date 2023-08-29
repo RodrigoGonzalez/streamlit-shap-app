@@ -2,6 +2,14 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.0 (2023-08-29)
+
+### Feat
+
+- **main-app**: add bivariate and univariate analysis (#44)
+- **main-application**: add a contents directory (#43)
+- **main-app**: add project intro and images (#42)
+
 ## v0.3.7 (2023-08-23)
 
 ### Fix
