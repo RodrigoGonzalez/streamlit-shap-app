@@ -59,7 +59,7 @@ def feature_analysis(dataset: pd.DataFrame) -> None:
 
     pearson_corr = generate_correlation(dataset)
 
-    st.markdown("## Correlation Summary")
+    st.markdown("## Feature Correlations")
     col1, col2 = st.columns([1, 2])
 
     with col1:
@@ -177,9 +177,32 @@ def generate_correlation_tables(
         """
     )
 
+    display_pearson_info(pearson_corr)
+
+    display_kendall_info(kendall_corr)
+
+    display_spearman_info(spearman_corr)
+
+    if st.checkbox("\n Display detailed feature correlation tables"):
+        _display_full_correlation_tables(pearson_corr, kendall_corr, spearman_corr)
+
+
+def display_pearson_info(pearson_corr: pd.DataFrame) -> None:
+    """
+    Display Pearson correlation information.
+
+    Parameters
+    ----------
+    pearson_corr : pd.DataFrame
+        A DataFrame containing the Pearson correlation coefficients.
+
+    Returns
+    -------
+    None
+        This function does not return anything.
+    """
     st.markdown("### Pearson Correlation")
     col1, col2 = st.columns([0.7, 0.3])
-
     with col1:
         pearson = (
             "https://latex.codecogs.com/svg.image?r=\\frac{\\sum_{i=1}^{n}(x_i-\\bar"
@@ -213,13 +236,26 @@ def generate_correlation_tables(
             """,
             unsafe_allow_html=True,
         )
-
     with col2:
         st.dataframe(pearson_corr["TARGET"].sort_values(ascending=False), use_container_width=False)
 
+
+def display_kendall_info(kendall_corr: pd.DataFrame) -> None:
+    """
+    Display Kendall correlation information.
+
+    Parameters
+    ----------
+    kendall_corr : pd.DataFrame
+        A DataFrame containing the Pearson correlation coefficients.
+
+    Returns
+    -------
+    None
+        This function does not return anything.
+    """
     st.markdown("### Kendall Correlation (Kendall's Tau)")
     col1, col2 = st.columns([0.7, 0.3])
-
     with col1:
         kendall = (
             "https://latex.codecogs.com/svg.image?\\tau=\\frac{(n_{\\text{concordant}}"
@@ -254,13 +290,26 @@ def generate_correlation_tables(
             """,
             unsafe_allow_html=True,
         )
-
     with col2:
         st.dataframe(kendall_corr["TARGET"].sort_values(ascending=False), use_container_width=False)
 
+
+def display_spearman_info(spearman_corr: pd.DataFrame) -> None:
+    """
+    Display Spearman correlation information.
+
+    Parameters
+    ----------
+    spearman_corr : pd.DataFrame
+        A DataFrame containing the Pearson correlation coefficients.
+
+    Returns
+    -------
+    None
+        This function does not return anything.
+    """
     st.markdown("### Spearman Correlation (Spearman's Rho)")
     col1, col2 = st.columns([0.7, 0.3])
-
     with col1:
         spearman = (
             "https://latex.codecogs.com/svg.image?\\rho=1-\\frac{6\\sum&space;d_i^2}{n(n^2-1)}"
@@ -294,12 +343,10 @@ def generate_correlation_tables(
             """,
             unsafe_allow_html=True,
         )
-
     with col2:
         st.dataframe(
             spearman_corr["TARGET"].sort_values(ascending=False), use_container_width=False
         )
-
     st.markdown(
         """
         ### Summary
@@ -315,12 +362,27 @@ def generate_correlation_tables(
     )
     st.markdown("---")
 
-    if st.checkbox("\n Display detailed feature correlation tables"):
-        st.markdown("""Pearson Correlations between all features and target variable.""")
-        st.dataframe(pearson_corr)
 
-        st.markdown("""Kendall Correlations between all features and target variable.""")
-        st.dataframe(kendall_corr)
+def _display_full_correlation_tables(
+    pearson_corr: pd.DataFrame, kendall_corr: pd.DataFrame, spearman_corr: pd.DataFrame
+) -> None:
+    """
+    Display full correlation tables.
 
-        st.markdown("""Spearman Correlations between all features and target variable.""")
-        st.dataframe(spearman_corr)
+    Parameters
+    ----------
+    pearson_corr : DataFrame
+        Pearson Correlations between all features and target variable.
+    kendall_corr : DataFrame
+        Kendall Correlations between all features and target variable.
+    spearman_corr : DataFrame
+        Spearman Correlations between all features and target variable.
+    """
+    st.markdown("""Pearson Correlations between all features and target variable.""")
+    st.dataframe(pearson_corr)
+
+    st.markdown("""Kendall Correlations between all features and target variable.""")
+    st.dataframe(kendall_corr)
+
+    st.markdown("""Spearman Correlations between all features and target variable.""")
+    st.dataframe(spearman_corr)
