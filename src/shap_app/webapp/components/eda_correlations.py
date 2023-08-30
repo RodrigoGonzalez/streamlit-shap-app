@@ -55,13 +55,14 @@ def feature_analysis(dataset: pd.DataFrame) -> None:
         selection for our predictive model.
         """
     )
+    st.markdown("---")
 
     pearson_corr = generate_correlation(dataset)
 
+    st.markdown("## Correlation Summary")
     col1, col2 = st.columns([1, 2])
 
     with col1:
-        col1.header("Correlation Summary")
         st.markdown("""Correlations between target and all features.""")
         st.markdown(
             """

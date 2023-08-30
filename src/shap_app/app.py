@@ -225,6 +225,7 @@ visualize_data_introduction(st.session_state["df"])
 # with st.expander("Visualize Individual Features with Histograms"):
 #     # Visualize all features and target
 #     raw_dataset_insights(st.session_state["df"])
+st.markdown("---")
 feature_analysis(st.session_state["df"])
 with st.expander("Detailed Correlation Information"):
     generate_correlation_tables(st.session_state["df"])
