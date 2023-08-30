@@ -4,6 +4,10 @@ import pandas as pd
 import seaborn as sns
 import streamlit as st
 
+from shap_app.webapp.components.eda_boxplots import box_plots_section
+from shap_app.webapp.components.eda_histograms import histograms_and_kde_plots
+from shap_app.webapp.components.outliers import introduction_to_techniques_to_remove_outliers
+
 plt.style.use("ggplot")
 sns.set_theme(style="whitegrid")
 
@@ -53,102 +57,26 @@ def visualize_data_introduction(dataset: pd.DataFrame) -> None:
         """
     )
 
-    col1, col2 = st.columns([0.3, 0.7])
+    box_plots_section(st.session_state["df"])
 
-    with col1:
+    st.markdown("---")
+
+    introduction_to_techniques_to_remove_outliers()
+    st.markdown("---")
+
+    if st.session_state["outliers_dict"]["TARGET"] >= 0:
         st.markdown(
             """
-            Box plots are a great way to visualize the distribution of a feature.
-            They provide a quick and easy way to visualize the range, median,
-            quartiles, and outliers in the data. The box represents the inter-quartile
-            range (IQR), which is the range between the first and third quartiles.
-            The line in the middle of the box represents the median. The whiskers
-            represent the range of the data, excluding outliers. Outliers are
-            represented by dots outside the whiskers.
+            #### Remove Target Outliers
 
-            It looks like we have some outliers in the dataset. Let's take a closer
-            look at them:
+            We can remove the outliers in the target column by filtering the
+            dataset to only include rows where the target is less than 50,000.
             """
         )
+    st.markdown("---")
 
-        outliers = dataset.apply(
-            lambda x: (
-                (x < (x.quantile(0.25) - 1.5 * (x.quantile(0.75) - x.quantile(0.25))))
-                | (x > (x.quantile(0.75) + 1.5 * (x.quantile(0.75) - x.quantile(0.25))))
-            ).sum()
-        )
-        outliers_percent = outliers * 100.0 / np.shape(dataset)[0]
-        for k, percent in outliers_percent.items():
-            if percent:
-                st.markdown(f"- Column {k} percent outliers = {percent:.2f}%")
-
-    with col2:
-        _create_visualization_box_plots(dataset)
-
-    st.markdown(
-        """
-        #### Histograms and KDE Plots
-        """
-    )
-
-    col1, col2 = st.columns([0.3, 0.7])
-
-    with col1:
-        st.markdown(
-            """
-            Histograms are a powerful tool for visualizing the distribution of a
-            feature. They provide a visual representation of data by dividing the
-            entire range of values into a series of intervals (or 'bins') and then
-            count how many values fall into each bin. This gives us a sense of the
-            data's underlying frequency distribution, including the range, median,
-            quartiles, and outliers.
-
-            KDE (Kernel Density Estimation) plots are a statistical technique for
-            smoothing a histogram to create a continuous curve. They provide a more
-            refined view of the data distribution. KDE plots estimate the probability
-            density function of a random variable, which helps in identifying the
-            shape of the distribution and the values where data points are more likely
-            to occur. Like histograms, KDE plots can also help visualize the range,
-            median, quartiles, and outliers in the data.
-
-            """
-        )
-    with col2:
-        _create_visualization_histogram_plots(dataset)
-
-
-def _create_visualization_box_plots(dataset: pd.DataFrame) -> None:
-    # Create a new matplotlib figure
-    fig, axs = plt.subplots(ncols=7, nrows=_get_num_rows_for_figures(dataset), figsize=(20, 10))
-    axs = axs.flatten()
-    for index, (k, v) in enumerate(dataset.items()):
-        sns.boxplot(y=k, data=dataset, ax=axs[index], palette="mako")
-    plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=5.0)
-    st.pyplot(fig, clear_figure=True)
-    st.markdown(
-        "<h3 style='text-align: center;'>Box Plots of Each Feature</h3>", unsafe_allow_html=True
-    )
-
-
-def _create_visualization_histogram_plots(dataset: pd.DataFrame) -> None:
-    fig, axs = plt.subplots(ncols=7, nrows=_get_num_rows_for_figures(dataset), figsize=(20, 10))
-    axs = axs.ravel()
-    for index, column in enumerate(dataset.columns):
-        sns.histplot(dataset[column], ax=axs[index], kde=True, color="#003153")
-    plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=5.0)
-    st.pyplot(fig, clear_figure=True)
-    st.markdown(
-        "<h3 style='text-align: center;'>Histograms of Each Feature with KDE Plots</h3>",
-        unsafe_allow_html=True,
-    )
-
-
-def _get_num_rows_for_figures(dataset: pd.DataFrame) -> int:
-    n_rows = dataset.shape[1] // 7
-    if dataset.shape[1] % 7 != 0:
-        n_rows += 1
-
-    return n_rows
+    histograms_and_kde_plots(st.session_state["df"])
+    st.markdown("---")
 
 
 def raw_dataset_insights(dataset: pd.DataFrame) -> None:

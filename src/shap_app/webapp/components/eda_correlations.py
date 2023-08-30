@@ -59,7 +59,7 @@ def feature_analysis(dataset: pd.DataFrame) -> None:
 
     pearson_corr = generate_correlation(dataset)
 
-    st.markdown("## Feature Correlations")
+    st.markdown("## Pairwise Feature Correlations")
     col1, col2 = st.columns([1, 2])
 
     with col1:
@@ -166,6 +166,12 @@ def generate_correlation_tables(
     pearson_corr = generate_correlation(dataset)
     kendall_corr = generate_correlation(dataset, method="kendall")
     spearman_corr = generate_correlation(dataset, method="spearman")
+
+    # Save correlations
+    st.session_state["pearson_corr"] = pearson_corr
+    st.session_state["kendall_corr"] = kendall_corr
+    st.session_state["spearman_corr"] = spearman_corr
+
     st.header("Correlation Summaries")
     st.markdown(
         """
@@ -177,14 +183,18 @@ def generate_correlation_tables(
         """
     )
 
-    display_pearson_info(pearson_corr)
+    display_pearson_info(st.session_state["pearson_corr"])
 
-    display_kendall_info(kendall_corr)
+    display_kendall_info(st.session_state["kendall_corr"])
 
-    display_spearman_info(spearman_corr)
+    display_spearman_info(st.session_state["spearman_corr"])
 
     if st.checkbox("\n Display detailed feature correlation tables"):
-        _display_full_correlation_tables(pearson_corr, kendall_corr, spearman_corr)
+        _display_full_correlation_tables(
+            st.session_state["pearson_corr"],
+            st.session_state["kendall_corr"],
+            st.session_state["spearman_corr"],
+        )
 
 
 def display_pearson_info(pearson_corr: pd.DataFrame) -> None:
