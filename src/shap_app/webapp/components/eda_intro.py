@@ -39,7 +39,7 @@ def eda_main_definition() -> None:
         - Correlation
         """
     )
-    with st.expander("A description of the main steps and techniques involved in EDA"):
+    with st.expander("A description of some of the steps and techniques involved in EDA"):
         st.markdown(
             """
             #### Data Collection

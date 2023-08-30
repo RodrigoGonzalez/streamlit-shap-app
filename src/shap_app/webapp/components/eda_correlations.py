@@ -1,4 +1,5 @@
 """ Exploratory Data Analysis (EDA) Correlations component """
+import os.path
 from typing import Literal
 
 import matplotlib
@@ -28,40 +29,87 @@ def feature_analysis(dataset: pd.DataFrame) -> None:
         """
         ## Bivariate Analysis
 
-        In this section, we will explore the relationship between the target
-        variable (the variable we want to predict) and each feature (input
-        variable) in the dataset. This analysis is crucial as it helps us
-        understand how each feature influences the target variable. It also
-        aids in identifying any unusual data points, known as outliers, or any
-        irregularities in the data.
-
-        The insights derived from this analysis can guide us in data
-        preprocessing steps such as feature transformation, which can make the
-        data more suitable for modeling and potentially improve the performance
-        of our predictive models.
-
-        ### Correlation Analysis
-
-        Correlation analysis is a statistical method used to evaluate the
-        strength and direction of the relationship between two variables. The
-        correlation coefficient ranges from -1 to 1. A value close to 1 implies
-        a strong positive relationship, a value close to -1 implies a strong
-        negative relationship, and a value close to 0 implies no
-        relationship.
-
-        By examining the correlation between the target variable and each
-        feature, we can identify which features are most likely to influence
-        the target variable. This can be particularly useful in feature
-        selection for our predictive model.
         """
     )
 
+    col1, col2 = st.columns([0.3, 0.7])
+
+    with col1:
+        st.markdown(
+            """
+            In this section, we will explore the relationship between the target
+            variable (the variable we want to predict) and each feature (input
+            variable) in the dataset. This analysis is crucial as it helps us
+            understand how each feature influences the target variable. It also
+            aids in identifying any unusual data points, known as outliers, or any
+            irregularities in the data.
+
+            The insights derived from this analysis can guide us in data
+            preprocessing steps such as feature transformation, which can make the
+            data more suitable for modeling and potentially improve the performance
+            of our predictive models.
+
+            ### Correlation Analysis
+
+            Correlation analysis is a statistical method used to evaluate the
+            strength and direction of the relationship between two variables. The
+            correlation coefficient ranges from -1 to 1. A value close to 1 implies
+            a strong positive relationship, a value close to -1 implies a strong
+            negative relationship, and a value close to 0 implies no
+            relationship.
+
+            By examining the correlation between the target variable and each
+            feature, we can identify which features are most likely to influence
+            the target variable. This can be particularly useful in feature
+            selection for our predictive model.
+
+            ### Seaborn Pairplot
+
+            A Seaborn pairplot, also known as a scatterplot matrix, is a grid
+            of plots that shows the relationships between pairs of numerical
+            variables in a dataset.
+
+            #### Elements Displayed in a Pairplot
+
+            - Scatter Plots: For each pair of different variables, a scatter
+                plot is plotted to visualize the relationship between them.
+            - Histograms or KDE Plots: On the diagonal, histograms or Kernel
+                Density Estimation (KDE) plots are often displayed,
+                representing the univariate distribution of each variable.
+
+            #### Insights from a Pairplot
+
+            A pairplot provides multiple insights into the dataset:
+
+            - Correlations: Helps in quickly identifying the type and strength
+                of the relationship between two variables.
+            - Data Distributions: Univariate distributions on the diagonal help
+                you understand the distribution of individual variables.
+            - Outliers: Scatter plots can also help identify outliers or
+                anomalies in the data.
+            - Variable Clusters: Allows for the visualization of clusters or
+                groups within variables.
+
+            Pairplots are particularly useful for exploratory data analysis
+            when you have a new dataset. They provide a quick overview of the
+            relationships between numerical variables, helping in identifying
+            patterns, correlations, and potential outliers in the data.
+
+            """
+        )
+
+    with col2:
+        # Create a pairplot with seaborn
+        create_sns_pairplot(dataset)
+
+    st.markdown("---")
+
     pearson_corr = generate_correlation(dataset)
 
+    st.markdown("## Correlation Summary")
     col1, col2 = st.columns([1, 2])
 
     with col1:
-        col1.header("Correlation Summary")
         st.markdown("""Correlations between target and all features.""")
         st.markdown(
             """
@@ -114,6 +162,55 @@ def feature_analysis(dataset: pd.DataFrame) -> None:
             cmap="coolwarm",
             ax=ax,
         )
+        st.pyplot(fig, clear_figure=True)
+
+
+# @figure_wrapper("pairplot_fig", "boston_housing")
+def create_sns_pairplot(dataset: pd.DataFrame) -> plt.Figure:
+    """
+    Creates a Seaborn pairplot for the given dataset.
+
+    A pairplot is a grid of scatter plots that allows for the visualization of
+    the relationships between all pairs of numerical variables in a dataset.
+    On the diagonal, histograms or Kernel Density Estimation (KDE) plots are
+    displayed, representing the univariate distribution of each variable.
+
+    This function uses Seaborn's pairplot function to generate the plot. The
+    plot is then displayed using Streamlit's pyplot function.
+
+    Parameters
+    ----------
+    dataset : pd.DataFrame
+        The dataset for which to create the pairplot. This should be a
+        DataFrame where each column represents a numerical variable.
+
+    Returns
+    -------
+    plt.Figure
+        The generated matplotlib figure.
+    """
+    path = "assets/boston_housing/pairplot.jpg"
+
+    if os.path.exists(path):
+        st.image(
+            path,
+            caption=("Seaborn Pairplot for the Boston Housing Dataset"),
+            use_column_width=True,
+        )
+
+    else:
+        # Generate the pairplot
+        sns.pairplot(
+            dataset,
+            plot_kws={"alpha": 0.2},
+            diag_kind="kde",
+        )
+        # Get the current figure from matplotlib
+        fig = plt.gcf()
+
+        fig.savefig("assets/boston_housing/pairplot.jpg")
+
+        # Display the matplotlib figure in Streamlit
         st.pyplot(fig, clear_figure=True)
 
 

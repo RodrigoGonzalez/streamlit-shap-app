@@ -211,3 +211,7 @@ tmp/*
 
 # Ignore catboost cache
 catboost_info/
+
+# Ignore .pkl files in assets directory and subdirectories
+assets/**/*.pkl
+assets/**/*.jpg

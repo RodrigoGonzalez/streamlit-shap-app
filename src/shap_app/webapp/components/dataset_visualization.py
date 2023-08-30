@@ -84,6 +84,10 @@ def visualize_data_introduction(dataset: pd.DataFrame) -> None:
 
     with col2:
         _create_visualization_box_plots(dataset)
+        st.markdown(
+            "<h3 style='text-align: center;'>Box Plots of Each Feature</h3>", unsafe_allow_html=True
+        )
+    st.markdown("---")
 
     st.markdown(
         """
@@ -115,32 +119,43 @@ def visualize_data_introduction(dataset: pd.DataFrame) -> None:
         )
     with col2:
         _create_visualization_histogram_plots(dataset)
+        st.markdown(
+            "<h3 style='text-align: center;'>Histograms of Each Feature with KDE Plots</h3>",
+            unsafe_allow_html=True,
+        )
 
 
+# @figure_wrapper("box_plots", "boston_housing")
 def _create_visualization_box_plots(dataset: pd.DataFrame) -> None:
     # Create a new matplotlib figure
     fig, axs = plt.subplots(ncols=7, nrows=_get_num_rows_for_figures(dataset), figsize=(20, 10))
     axs = axs.flatten()
     for index, (k, v) in enumerate(dataset.items()):
         sns.boxplot(y=k, data=dataset, ax=axs[index], palette="mako")
+
+    # Apply tight_layout only to the current figure
+    # plt.figure(fig.number)
     plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=5.0)
+
     st.pyplot(fig, clear_figure=True)
-    st.markdown(
-        "<h3 style='text-align: center;'>Box Plots of Each Feature</h3>", unsafe_allow_html=True
-    )
+
+    # return fig
 
 
+# @figure_wrapper("histogram_plots", "boston_housing")
 def _create_visualization_histogram_plots(dataset: pd.DataFrame) -> None:
     fig, axs = plt.subplots(ncols=7, nrows=_get_num_rows_for_figures(dataset), figsize=(20, 10))
     axs = axs.ravel()
     for index, column in enumerate(dataset.columns):
         sns.histplot(dataset[column], ax=axs[index], kde=True, color="#003153")
+
+    # Apply tight_layout only to the current figure
+    # plt.figure(fig.number)
     plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=5.0)
+
     st.pyplot(fig, clear_figure=True)
-    st.markdown(
-        "<h3 style='text-align: center;'>Histograms of Each Feature with KDE Plots</h3>",
-        unsafe_allow_html=True,
-    )
+
+    # return fig
 
 
 def _get_num_rows_for_figures(dataset: pd.DataFrame) -> int:
