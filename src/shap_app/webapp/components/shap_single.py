@@ -239,6 +239,6 @@ def plot_waterfall(shap_explanation: shap.Explanation, slider_value: int) -> Non
         st.pyplot(waterfall_fig, clear_figure=True)
 
     st.markdown(
-        "Where $E[f(x)]$ is the Expected Value of the model output for the "
-        "given input (i.e., $f(x)$)."
+        "Where E[f(x)] is the Expected Value of the model output for the "
+        "given input (i.e., f(x))."
     )
