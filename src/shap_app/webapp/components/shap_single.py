@@ -129,7 +129,7 @@ def individual_tree_shap_plots(
         label="Select data point to visually inspect",
         min_value=1,
         max_value=max_value,
-        value=20,
+        value=100,
         key="individual_shap_values_slider",
         help="Slide to select number of observations to visually inspect",
     )
