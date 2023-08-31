@@ -227,6 +227,7 @@ def plot_waterfall(shap_explanation: shap.Explanation, slider_value: int) -> Non
     None
     """
     # Generate the SHAP plot as HTML
+    fig, axs = plt.subplots()
     shap.waterfall_plot(
         shap_values=shap_explanation[slider_value, :],
         max_display=30,
