@@ -216,3 +216,7 @@ catboost_info/
 assets/**/*.pkl
 assets/**/*.jpg
 assets/**/*.png
+assets/**/*.jpeg
+!assets/ai_explainability.jpg
+!assets/boston_housing.jpeg
+!assets/explainable_ai_info.jpeg
