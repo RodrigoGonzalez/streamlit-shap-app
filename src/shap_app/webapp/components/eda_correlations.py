@@ -192,12 +192,14 @@ def generate_heat_map(pearson_corr: pd.DataFrame, fig_name: str = "heat_map") ->
     if os.path.exists(image_file):
         st.image(
             image_file,
-            caption=("A Heatmap of Pearson Correlation Coefficients"),
+            caption="A Heatmap of Pearson Correlation Coefficients",
             use_column_width=True,
         )
 
     else:
         # Create a new matplotlib figure
+        plt.figure(figsize=(12.8, 9.6))
+
         # Generate the heatmap
         sns.heatmap(
             pearson_corr.values,
@@ -205,11 +207,14 @@ def generate_heat_map(pearson_corr: pd.DataFrame, fig_name: str = "heat_map") ->
             annot=True,
             square=True,
             fmt=".2f",
-            annot_kws={"size": 5},
+            annot_kws={"size": 12},
             yticklabels=pearson_corr.columns,
             xticklabels=pearson_corr.columns,
             cmap="coolwarm",
         )
+        plt.xticks(rotation=90)
+        plt.yticks(rotation=0)
+
         heat_map = plt.gcf()
         heat_map.savefig(image_file)
         st.pyplot(heat_map, clear_figure=True)
