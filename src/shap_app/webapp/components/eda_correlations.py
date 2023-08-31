@@ -198,7 +198,7 @@ def generate_heat_map(pearson_corr: pd.DataFrame, fig_name: str = "heat_map") ->
 
     else:
         # Create a new matplotlib figure
-        plt.figure(figsize=(12, 12))
+        plt.figure(figsize=(12, 10))
 
         # Generate the heatmap
         sns.heatmap(
