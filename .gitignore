@@ -222,3 +222,4 @@ assets/**/*.jpeg
 !assets/explainable_ai_info.jpeg
 !assets/pairplot.png
 !assets/scaled_reg_plots.png
+!assets/heat_map.png
