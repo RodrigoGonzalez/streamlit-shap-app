@@ -199,7 +199,32 @@ def individual_tree_shap_plots(
         st.markdown(markdown_string)
 
 
-def plot_waterfall(shap_explanation, slider_value):
+def plot_waterfall(shap_explanation: shap.Explanation, slider_value: int) -> None:
+    """
+    Generate a waterfall plot for a given SHAP explanation and slider value.
+
+    This function takes a SHAP explanation and a slider value as input and
+    generates a waterfall plot. The waterfall plot visually represents the
+    contribution of each feature to the final prediction for a specific
+    instance.
+
+    Each bar in the plot corresponds to a feature, and the height of the bar
+    indicates the SHAP value of that feature. The SHAP values are calculated
+    for the instance specified by the slider value.
+
+    Parameters
+    ----------
+    shap_explanation : shap.Explanation
+        The SHAP explanation object, which contains the SHAP values for all
+        instances in the dataset.
+    slider_value : int
+        The slider value that specifies the instance for which the waterfall
+        plot is generated.
+
+    Returns
+    -------
+    None
+    """
     # Generate the SHAP plot as HTML
     waterfall_fig = shap.waterfall_plot(
         shap_values=shap_explanation[slider_value, :],
