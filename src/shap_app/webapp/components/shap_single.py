@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 import shap
 import streamlit as st
-from matplotlib import pyplot as plt
 from streamlit_shap import st_shap
 
 matplotlib.use("Agg")
@@ -202,9 +201,13 @@ def individual_tree_shap_plots(
 
 def plot_waterfall(shap_explanation, slider_value):
     # Generate the SHAP plot as HTML
-    shap.waterfall_plot(shap_values=shap_explanation[slider_value, :], max_display=30, show=False)
+    waterfall_fig = shap.waterfall_plot(
+        shap_values=shap_explanation[slider_value, :],
+        max_display=30,
+        show=False,
+    )
     # Display the matplotlib figure in Streamlit
-    waterfall_fig = plt.gcf()
+    # waterfall_fig = plt.gcf()
     if waterfall_fig is not None:
         st.pyplot(waterfall_fig, clear_figure=True)
 

@@ -215,7 +215,7 @@ catboost_info/
 # Ignore .pkl files and images in assets directory and subdirectories
 assets/**/*.pkl
 assets/**/*.jpg
-assets/**/*.png
+!assets/**/*.png
 assets/**/*.jpeg
 !assets/ai_explainability.jpg
 !assets/boston_housing.jpeg
