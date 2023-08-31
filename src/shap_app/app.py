@@ -6,6 +6,7 @@ from streamlit_option_menu import option_menu
 from shap_app.main import MAIN_DIR
 from shap_app.webapp.components.dataset_summary import raw_dataset_summary
 from shap_app.webapp.components.dataset_visualization import visualize_data_introduction
+from shap_app.webapp.components.eda_correlated_features import bivariate_analysis_corr_feats
 from shap_app.webapp.components.eda_correlations import feature_analysis
 from shap_app.webapp.components.eda_correlations import generate_correlation_tables
 from shap_app.webapp.components.eda_intro import eda_main_definition
@@ -127,7 +128,7 @@ with col2:
     )
     st.markdown(
         """
-        Image Source: [Neo4j](https://neo4j.com/blog/ai-graph-technology-ai-explainability/).
+        Source: [Neo4j](https://neo4j.com/blog/ai-graph-technology-ai-explainability/).
         """
     )
 
@@ -189,7 +190,7 @@ with col2:
     )
     st.markdown(
         f"""
-        Image source: {link}.
+        Source: {link}.
         """
     )
 
@@ -228,26 +229,29 @@ visualize_data_introduction(st.session_state["df"])
 st.markdown("---")
 
 
-feature_analysis(st.session_state["df"])
+feature_analysis(st.session_state["df_masked"])
 with st.expander("Detailed Correlation Information"):
-    generate_correlation_tables(st.session_state["df"])
-st.markdown("---")
-st.markdown(
-    """
-    ## Feature Selection Using Most Correlated Features
+    generate_correlation_tables(st.session_state["df_masked"])
+bivariate_analysis_corr_feats(st.session_state["df_masked"])
 
-
-    """
-)
 st.markdown("---")
 
-
-st.markdown(
-    """
-    ## Feature Engineering
-    """
-)
-st.markdown("---")
+# st.markdown(
+#     """
+#     ## Feature Selection Using Most Correlated Features
+#
+#
+#     """
+# )
+# st.markdown("---")
+#
+#
+# st.markdown(
+#     """
+#     ## Feature Engineering
+#     """
+# )
+# st.markdown("---")
 
 
 # TODO: Finish this section

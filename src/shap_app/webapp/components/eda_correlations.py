@@ -58,6 +58,7 @@ def feature_analysis(dataset: pd.DataFrame) -> None:
     st.markdown("---")
 
     pearson_corr = generate_correlation(dataset)
+    st.session_state["pearson_corr"] = pearson_corr
 
     st.markdown("## Pairwise Feature Correlations")
     col1, col2 = st.columns([1, 2])
@@ -184,9 +185,7 @@ def generate_correlation_tables(
     )
 
     display_pearson_info(st.session_state["pearson_corr"])
-
     display_kendall_info(st.session_state["kendall_corr"])
-
     display_spearman_info(st.session_state["spearman_corr"])
 
     if st.checkbox("\n Display detailed feature correlation tables"):

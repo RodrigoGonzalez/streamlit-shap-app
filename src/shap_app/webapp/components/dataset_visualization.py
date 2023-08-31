@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -7,6 +9,8 @@ import streamlit as st
 from shap_app.webapp.components.eda_boxplots import box_plots_section
 from shap_app.webapp.components.eda_histograms import histograms_and_kde_plots
 from shap_app.webapp.components.outliers import introduction_to_techniques_to_remove_outliers
+from shap_app.webapp.components.outliers import remove_outliers_percentile
+from shap_app.webapp.components.outliers import remove_outliers_robust_z_score
 
 plt.style.use("ggplot")
 sns.set_theme(style="whitegrid")
@@ -62,21 +66,34 @@ def visualize_data_introduction(dataset: pd.DataFrame) -> None:
     st.markdown("---")
 
     introduction_to_techniques_to_remove_outliers()
-    st.markdown("---")
 
     if st.session_state["outliers_dict"]["TARGET"] >= 0:
-        st.markdown(
-            """
+        remove_target_outliers()
+
+    st.markdown("---")
+
+    histograms_and_kde_plots(st.session_state["df_masked"])
+
+
+def remove_target_outliers() -> None:
+    """
+    Remove outliers in the target column.
+    """
+    threshold = remove_outliers_percentile(st.session_state["df"], "TARGET", 0.05, "upper")
+    st.markdown(
+        f"""
             #### Remove Target Outliers
 
             We can remove the outliers in the target column by filtering the
-            dataset to only include rows where the target is less than 50,000.
+            dataset to only include rows where we use a robust z-score and a
+            Z-score threshold of {threshold:.2f} (so as to remove a maximum of
+            about 5% of the data. This will help us better visualize the
+            distribution of the rest of the data.
             """
-        )
-    st.markdown("---")
-
-    histograms_and_kde_plots(st.session_state["df"])
-    st.markdown("---")
+    )
+    mask = remove_outliers_robust_z_score(st.session_state["df"], "TARGET", threshold, "upper")
+    df = deepcopy(st.session_state["df"])
+    st.session_state["df_masked"] = df[mask]
 
 
 def raw_dataset_insights(dataset: pd.DataFrame) -> None:

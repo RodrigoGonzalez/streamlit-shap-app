@@ -57,41 +57,65 @@ def boston_housing_dataset_introduction() -> None:
     -------
     None
     """
-    st.markdown("## Boston House Price Predictions")
     st.markdown(
         """
+        ## Boston House Price Predictions
+
         The Boston Housing dataset is a renowned dataset in the field of
         machine learning, often used for regression tasks. It contains 506
         entries, each representing a census tract in the Boston area, with 13
         features and a target variable.
+        """
+    )
 
-        The features include a variety of information about the area,
-        such as:
-        - the per capita crime rate (CRIM)
-        - the proportion of residential land zoned for lots over 25,000 sq.ft.
-            (ZN)
-        - the proportion of non-retail business acres per town (INDUS)
-        - a binary variable indicating whether the tract borders the Charles
-        River (CHAS)
+    col1, col2 = st.columns(2)
 
-        It also includes environmental data like:
-        - nitric oxide concentration (NOX)
-        - housing information like the average number of rooms per dwelling
-            (RM)
-        - the proportion of homes built before 1940 (AGE)
-        - the median value of owner-occupied homes (MEDV)
+    with col1:
+        st.markdown(
+            """
+            The features include a variety of information about the area,
+            such as:
+            - the per capita crime rate (CRIM)
+            - the proportion of residential land zoned for lots over 25,000 sq.ft.
+                (ZN)
+            - the proportion of non-retail business acres per town (INDUS)
+            - a binary variable indicating whether the tract borders the Charles
+            River (CHAS)
 
-        Other features provide information about the location's accessibility,
-        such as:
-        - the weighted distances to five Boston employment centers (DIS)
-        - an index of accessibility to radial highways (RAD)
-        - the full-value property-tax rate per $10,000 (TAX)
+            It also includes environmental data like:
+            - nitric oxide concentration (NOX)
+            - housing information like the average number of rooms per dwelling
+                (RM)
+            - the proportion of homes built before 1940 (AGE)
+            - the median value of owner-occupied homes (MEDV)
 
-        The dataset also includes demographic information:
-        - the pupil-teacher ratio by town (PTRATIO)
-        - the proportion of people of African American descent (B)
-        - the percentage of the population considered lower status (LSTAT)
+            Other features provide information about the location's accessibility,
+            such as:
+            - the weighted distances to five Boston employment centers (DIS)
+            - an index of accessibility to radial highways (RAD)
+            - the full-value property-tax rate per $10,000 (TAX)
 
+            The dataset also includes demographic information:
+            - the pupil-teacher ratio by town (PTRATIO)
+            - the proportion of people of African American descent (B)
+            - the percentage of the population considered lower status (LSTAT)
+            """
+        )
+
+    with col2:
+        st.image(
+            "assets/boston_housing.jpeg",
+            caption=("The Charles River in Boston, MA."),
+            use_column_width=True,
+        )
+        st.markdown(
+            """
+            Source: [World Atlas](https://www.worldatlas.com/rivers/charles-river.html).
+            """
+        )
+
+    st.markdown(
+        """
         ### Limitations
 
         The Boston Housing dataset has several limitations.
