@@ -143,7 +143,7 @@ def create_visualization_box_plots(dataset: pd.DataFrame, fig_name: str = "box_p
     if os.path.exists(image_file):
         st.image(
             image_file,
-            caption=("Box Plots of Each Feature"),
+            caption="Box Plots of Each Feature",
             use_column_width=True,
         )
 

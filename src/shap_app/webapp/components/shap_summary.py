@@ -1,3 +1,5 @@
+import os
+
 import matplotlib
 import numpy as np
 import pandas as pd
@@ -59,7 +61,7 @@ def shap_feature_summary(dataset: pd.DataFrame, shap_values: np.ndarray) -> None
         _generate_shap_summary_plot(dataset, shap_values)
 
     with dependence_plot:
-        _generate_shap_dependence_plot(dataset, shap_values)
+        generate_shap_dependence_plot(dataset, shap_values)
 
 
 def _generate_shap_summary_plot(dataset: pd.DataFrame, shap_values: np.ndarray) -> None:
@@ -109,15 +111,70 @@ def _generate_shap_summary_plot(dataset: pd.DataFrame, shap_values: np.ndarray) 
         key="summary_radio",
     )
 
-    # Generate the SHAP summary plot
-    shap.summary_plot(shap_values, dataset, plot_type=SUMMARY_PLOTS[button], show=False)
-    # Get the current matplotlib figure
-    summary_plot_fig = plt.gcf()
-    # Display the matplotlib figure in Streamlit
-    st.pyplot(summary_plot_fig, clear_figure=True)
+    generate_shap_summary_plot(button, dataset, shap_values)
 
 
-def _generate_shap_dependence_plot(dataset: pd.DataFrame, shap_values: np.ndarray) -> None:
+def generate_shap_summary_plot(
+    button: str,
+    dataset: pd.DataFrame,
+    shap_values: np.ndarray,
+    base_fig_name: str = "shap_summary_plot",
+) -> None:
+    """
+    Generate and display a SHAP summary plot.
+
+    This function generates a SHAP summary plot based on the selected plot
+    type. The plot is then displayed in the Streamlit application. The plot
+    type is determined by the button parameter, which should match a key in the
+    SUMMARY_PLOTS dictionary.
+
+    Parameters
+    ----------
+    button : str
+        The type of SHAP summary plot to generate. This should match a key in the
+        SUMMARY_PLOTS dictionary.
+    dataset : pd.DataFrame
+        The dataset used to train the model. Each row represents a sample and
+        each column represents a feature.
+    shap_values : np.ndarray
+        The SHAP values calculated for the model. Each row corresponds to a
+        sample and each column corresponds to a feature. The SHAP values
+        represent the contribution of each feature to the prediction for a
+        sample.
+    base_fig_name : str, optional
+        The base name of the figure to save, given that button gives different
+        types of plots.
+        Default is "shap_summary_plot".
+
+    Returns
+    -------
+    None
+    """
+    image_file = f"assets/{base_fig_name}_{SUMMARY_PLOTS[button]}.png"
+
+    if os.path.exists(image_file):
+        st.image(
+            image_file,
+            caption=f"{button} SHAP Summary Plot",
+            use_column_width=True,
+        )
+
+    else:
+        # Generate the SHAP summary plot
+        shap.summary_plot(shap_values, dataset, plot_type=SUMMARY_PLOTS[button], show=False)
+
+        # Get the current matplotlib figure
+        summary_plot_fig = plt.gcf()
+        summary_plot_fig.savefig(image_file)
+        # Display the matplotlib figure in Streamlit
+        st.pyplot(summary_plot_fig, clear_figure=True)
+
+
+def generate_shap_dependence_plot(
+    dataset: pd.DataFrame,
+    shap_values: np.ndarray,
+    base_fig_name: str = "shap_dependence_plot",
+) -> None:
     """
     Generate a SHAP dependence plot.
 
@@ -136,30 +193,50 @@ def _generate_shap_dependence_plot(dataset: pd.DataFrame, shap_values: np.ndarra
         sample and each column corresponds to a feature. The SHAP values
         represent the contribution of each feature to the prediction for a
         sample.
+    base_fig_name : str, optional
+        The base name of the figure to save, given that button gives different
+        types of plots.
+        Default is "shap_summary_plot".
 
     Returns
     -------
     None
     """
     feature = st.selectbox("Choose variable", dataset.columns)
-    st.markdown(f"### {feature} importance on housing price")
     st.markdown(
-        "To understand how a single feature effects the output of the model "
-        "we can plot the SHAP value of that feature vs. the value of the "
-        "feature for all the examples in a dataset. Since SHAP values "
-        "represent a feature’s responsibility for a change in the model "
-        "output, the plot below represents the change in predicted house "
-        f"price as {feature} changes. Vertical dispersion at a single value of {feature} "
-        "represents interaction effects with other features. To help reveal "
-        "these interactions the dependence plot automatically selects another "
-        "feature for coloring."
+        f"""
+        ### {feature} importance on housing price
+
+        To understand how a single feature effects the output of the model we
+        can plot the SHAP value of that feature vs. the value of the feature
+        for all the examples in a dataset. Since SHAP values represent a
+        feature’s responsibility for a change in the model output, the plot
+        below represents the change in predicted house price as {feature}
+        changes. Vertical dispersion at a single value of {feature} represents
+        interaction effects with other features. To help reveal these
+        interactions the dependence plot automatically selects another feature
+        for coloring.
+        """
     )
 
-    # Create a new matplotlib figure
-    fig, ax = plt.subplots()
+    image_file = f"assets/{base_fig_name}_{feature}.png"
 
-    # Generate the SHAP dependence plot
-    shap.dependence_plot(feature, shap_values, dataset, show=False, ax=ax)
+    if os.path.exists(image_file):
+        st.image(
+            image_file,
+            caption=f"SHAP dependence plot for {feature}, colored by an interaction feature",
+            use_column_width=True,
+        )
 
-    # Display the matplotlib figure in Streamlit
-    st.pyplot(fig, clear_figure=True)
+    else:
+        # Create a new matplotlib figure
+        fig, ax = plt.subplots()
+
+        # Generate the SHAP dependence plot
+        shap.dependence_plot(feature, shap_values, dataset, show=False, ax=ax)
+
+        # Get the current matplotlib figure
+        shap_dependence_plot = plt.gcf()
+        shap_dependence_plot.savefig(image_file)
+        # Display the matplotlib figure in Streamlit
+        st.pyplot(shap_dependence_plot, clear_figure=True)
