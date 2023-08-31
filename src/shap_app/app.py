@@ -348,7 +348,13 @@ st.markdown("---")
 
 
 # Display link to get back to the top
-st.markdown("[Back to Top](#introduction-to-explainable-ai)")
+st.markdown(
+    """
+    [Back to Top](#introduction-to-explainable-ai)
+    By Rodrigo Gonzalez
+    © Copyright 2023.
+    """
+)
 
 
 # # Other explainers

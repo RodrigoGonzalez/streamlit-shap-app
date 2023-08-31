@@ -140,6 +140,8 @@ def feature_analysis(dataset: pd.DataFrame) -> None:
 
     st.markdown(
         """
+        #### Initial Findings
+
         Based on an initial examination of the
         dataset, we can form the following relationships for the following
         features:
