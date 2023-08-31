@@ -2,6 +2,19 @@
 
 <!--next-version-placeholder-->
 
+## v0.5.0 (2023-08-31)
+
+### Feat
+
+- **correlated-features**: add additional charts that further display feature information (#50)
+
+### Refactor
+
+- **eda-components**: save figures to decrease loading time (#51)
+- **eda-charts**: refactor eda charts into their own modules, add outliers section (#49)
+- **eda-correlations**: refactor larger functions into smaller units (#48)
+- **main-app**: fix some formatting issues in the app (#47)
+
 ## v0.4.0 (2023-08-29)
 
 ### Feat
