@@ -351,7 +351,11 @@ st.markdown("---")
 st.markdown(
     """
     [Back to Top](#introduction-to-explainable-ai)
-    By Rodrigo Gonzalez
+
+
+    By Rodrigo Gonzalez.
+
+
     © Copyright 2023.
     """
 )
