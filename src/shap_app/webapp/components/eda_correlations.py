@@ -1,4 +1,5 @@
 """ Exploratory Data Analysis (EDA) Correlations component """
+import os
 from typing import Literal
 
 import matplotlib
@@ -39,70 +40,163 @@ def feature_analysis(dataset: pd.DataFrame) -> None:
         preprocessing steps such as feature transformation, which can make the
         data more suitable for modeling and potentially improve the performance
         of our predictive models.
+        """
+    )
+
+    pearson_corr = generate_correlation(dataset)
+    st.session_state["pearson_corr"] = pearson_corr
+
+    st.markdown("## Pairwise Feature Correlations")
+    st.markdown(
+        """
+        Correlations between target and all features.
 
         ### Correlation Analysis
 
         Correlation analysis is a statistical method used to evaluate the
-        strength and direction of the relationship between two variables. The
-        correlation coefficient ranges from -1 to 1. A value close to 1 implies
-        a strong positive relationship, a value close to -1 implies a strong
-        negative relationship, and a value close to 0 implies no
+        strength and direction of the relationship between two variables.
+        The correlation coefficient ranges from -1 to 1. A value close to 1
+        implies a strong positive relationship, a value close to -1 implies
+        a strong negative relationship, and a value close to 0 implies no
         relationship.
 
         By examining the correlation between the target variable and each
         feature, we can identify which features are most likely to influence
         the target variable. This can be particularly useful in feature
         selection for our predictive model.
+
+        Data Science involves the formulation of certain assumptions and
+        hypotheses about the dataset, which are then empirically tested through
+        various analytical procedures.
+
+        ### Pearson Correlation Heatmap
         """
     )
-    st.markdown("---")
-
-    pearson_corr = generate_correlation(dataset)
-    st.session_state["pearson_corr"] = pearson_corr
-
-    st.markdown("## Pairwise Feature Correlations")
-    col1, col2 = st.columns([1, 2])
+    col1, col2 = st.columns([0.4, 0.6])
 
     with col1:
-        st.markdown("""Correlations between target and all features.""")
         st.markdown(
             """
-            Data Science involves the formulation of certain assumptions and
-            hypotheses about the dataset, which are then empirically tested through
-            various analytical procedures. Based on an initial examination of the
-            dataset, we can form the following relationships for the following
-            features:
+            #### What is Pearson Correlation?
 
-            - The 'RM' feature, representing the average number of rooms per dwelling,
-              is likely to exhibit a direct correlation with the housing price. The
-              rationale behind this assumption is that larger houses, characterized
-              by a higher number of rooms, typically accommodate more individuals
-              and are generally priced higher due to increased demand. Hence, 'RM'
-              and housing prices are hypothesized to be directly proportional.
+            Pearson correlation is a statistical measure that quantifies the
+            linear relationship between two variables. It ranges from -1 to 1,
+            where:
 
-            - The 'LSTAT' feature, indicating the percentage of lower status
-              population, is hypothesized to have an inverse relationship with the
-              housing price. The underlying premise is that neighborhoods with a
-              higher proportion of lower status population are likely to have lower
-              purchasing power, which in turn, could lead to lower housing prices.
-              Thus, 'LSTAT' and housing prices are expected to be inversely proportional.
+            - -1 indicates a perfect negative correlation
+            - 0 indicates no correlation
+            - 1 indicates a perfect positive correlation
 
-            - The 'PTRATIO' feature, denoting the pupil-teacher ratio, is also
-              anticipated to be inversely proportional to the housing price. A
-              higher pupil-teacher ratio might suggest a lower number of schools
-              in the neighborhood, possibly due to lower tax income. This could be
-              indicative of lower average income in the neighborhood, which could
-              potentially lead to lower housing prices. Therefore, 'PTRATIO' and
-              housing prices are hypothesized to be inversely proportional.
+            #### What is a Heatmap?
+
+            A heatmap is a graphical representation of data where individual
+            values are represented as colors. It's often used to visualize
+            complex data structures, such as matrices, to make them easier to
+            understand.
+
+            #### What Does a Pearson Correlation Heatmap Show?
+
+            A Pearson correlation heatmap shows the Pearson correlation
+            coefficients between multiple variables in a dataset. Each cell in
+            the heatmap corresponds to the Pearson correlation coefficient
+            between two variables. The color of the cell indicates the strength
+            and direction of the correlation:
+
+            - Dark blue for strong negative correlation
+            - Light colors for weak correlation
+            - Dark red for strong positive correlation
             """
         )
 
     with col2:
-        col2.header("Pearson Correlation Heatmap")
+        generate_heat_map(pearson_corr)
 
+    with st.expander("### How to Interpret the Heatmap"):
+        st.markdown(
+            """
+            1.  **Diagonal Line**: The diagonal line from the top-left to the
+                bottom-right will always be colored with the strongest positive
+                correlation (usually dark red) because any variable is
+                perfectly correlated with itself.
+
+            2.  **Symmetry**: The heatmap is symmetrical along the diagonal
+                line, meaning the correlation between variable A and variable B
+                is the same as between variable B and variable A.
+
+            3.  **Strength and Direction**: The color intensity and hue give
+                you a quick visual understanding of the relationship between
+                variables. Darker colors signify stronger correlations.
+
+            4.  **Identifying Multicollinearity**: If two independent variables
+                are highly correlated (either positively or negatively), it may
+                indicate multicollinearity, which could be problematic in some
+                models like linear regression.
+
+            5.  **Target Variable**: If you include the target variable in the
+                heatmap, you can quickly identify which features are most
+                correlated with the target, aiding in feature selection.
+            """
+        )
+
+    st.markdown(
+        """
+        Based on an initial examination of the
+        dataset, we can form the following relationships for the following
+        features:
+
+        - The 'RM' feature, representing the average number of rooms per dwelling,
+          is likely to exhibit a direct correlation with the housing price. The
+          rationale behind this assumption is that larger houses, characterized
+          by a higher number of rooms, typically accommodate more individuals
+          and are generally priced higher due to increased demand. Hence, 'RM'
+          and housing prices are hypothesized to be directly proportional.
+
+        - The 'LSTAT' feature, indicating the percentage of lower status
+          population, is hypothesized to have an inverse relationship with the
+          housing price. The underlying premise is that neighborhoods with a
+          higher proportion of lower status population are likely to have lower
+          purchasing power, which in turn, could lead to lower housing prices.
+          Thus, 'LSTAT' and housing prices are expected to be inversely proportional.
+
+        - The 'PTRATIO' feature, denoting the pupil-teacher ratio, is also
+          anticipated to be inversely proportional to the housing price. A
+          higher pupil-teacher ratio might suggest a lower number of schools
+          in the neighborhood, possibly due to lower tax income. This could be
+          indicative of lower average income in the neighborhood, which could
+          potentially lead to lower housing prices. Therefore, 'PTRATIO' and
+          housing prices are hypothesized to be inversely proportional.
+
+        """
+    )
+
+
+def generate_heat_map(pearson_corr: pd.DataFrame, fig_name: str = "heat_map") -> None:
+    """
+    Generate a heatmap of Pearson correlation coefficients.
+
+    Parameters
+    ----------
+    pearson_corr : pd.DataFrame
+        A DataFrame containing the Pearson correlation coefficients.
+    fig_name : str, optional
+        The name of the figure to save. Default is "heat_map".
+
+    Returns
+    -------
+    None
+    """
+    image_file = f"assets/{fig_name}.png"
+
+    if os.path.exists(image_file):
+        st.image(
+            image_file,
+            caption=("A Heatmap of Pearson Correlation Coefficients"),
+            use_column_width=True,
+        )
+
+    else:
         # Create a new matplotlib figure
         fig, ax = plt.subplots()
-
         # Generate the heatmap
         sns.heatmap(
             pearson_corr.values,
@@ -116,7 +210,9 @@ def feature_analysis(dataset: pd.DataFrame) -> None:
             cmap="coolwarm",
             ax=ax,
         )
-        st.pyplot(fig, clear_figure=True)
+        heat_map = plt.gcf()
+        heat_map.savefig(image_file)
+        st.pyplot(heat_map, clear_figure=True)
 
 
 def generate_correlation(

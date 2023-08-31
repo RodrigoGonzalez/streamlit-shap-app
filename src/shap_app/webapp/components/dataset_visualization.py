@@ -50,14 +50,14 @@ def visualize_data_introduction(dataset: pd.DataFrame) -> None:
 
     st.markdown(
         """
-        ### Univariate Analysis
+        ## Univariate Analysis
 
         We start by visualizing each feature in the dataset. This helps us
         understand the distribution of each feature and identify any outliers
         or anomalies. We can also use this information to determine whether
         we need to transform the data to make it more suitable for modeling.
 
-        #### Box Plots
+        ### Box Plots
         """
     )
 

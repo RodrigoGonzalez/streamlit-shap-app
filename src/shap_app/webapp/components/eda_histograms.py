@@ -1,3 +1,5 @@
+import os
+
 import pandas as pd
 import seaborn as sns
 import streamlit as st
@@ -22,7 +24,7 @@ def histograms_and_kde_plots(dataset: pd.DataFrame) -> None:
     """
     st.markdown(
         """
-        #### Histograms and KDE Plots
+        ### Histograms and KDE Plots
         """
     )
     col1, col2 = st.columns([0.3, 0.7])
@@ -43,14 +45,15 @@ def histograms_and_kde_plots(dataset: pd.DataFrame) -> None:
             shape of the distribution and the values where data points are more likely
             to occur. Like histograms, KDE plots can also help visualize the range,
             median, quartiles, and outliers in the data.
-
             """
         )
     with col2:
         create_visualization_histogram_plots(dataset)
 
 
-def create_visualization_histogram_plots(dataset: pd.DataFrame) -> None:
+def create_visualization_histogram_plots(
+    dataset: pd.DataFrame, fig_name: str = "histogram_plots"
+) -> None:
     """
     Create histograms and KDE plots for each feature in the dataset.
 
@@ -58,18 +61,35 @@ def create_visualization_histogram_plots(dataset: pd.DataFrame) -> None:
     ----------
     dataset : pd.DataFrame
         The dataset for which the histograms and KDE plots are to be generated.
+    fig_name : str, optional
+        The name of the figure to save.
+        Default is "histogram_plots".
 
     Returns
     -------
     None
     """
-    fig, axs = plt.subplots(ncols=7, nrows=get_num_rows_for_figures(dataset), figsize=(20, 10))
-    axs = axs.ravel()
-    for index, column in enumerate(dataset.columns):
-        sns.histplot(dataset[column], ax=axs[index], kde=True, color="#003153")
-    plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=5.0)
-    st.pyplot(fig, clear_figure=True)
-    st.markdown(
-        "<h3 style='text-align: center;'>Histograms of Each Feature with KDE Plots</h3>",
-        unsafe_allow_html=True,
-    )
+    image_file = f"assets/{fig_name}.png"
+
+    if os.path.exists(image_file):
+        st.image(
+            image_file,
+            caption=("Histograms of Each Feature with KDE Plots"),
+            use_column_width=True,
+        )
+
+    else:
+        fig, axs = plt.subplots(ncols=7, nrows=get_num_rows_for_figures(dataset), figsize=(20, 10))
+        axs = axs.ravel()
+        for index, column in enumerate(dataset.columns):
+            sns.histplot(dataset[column], ax=axs[index], kde=True, color="#003153")
+        plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=5.0)
+
+        histogram_plot = plt.gcf()
+        histogram_plot.savefig(image_file)
+        st.pyplot(histogram_plot, clear_figure=True)
+
+        st.markdown(
+            "<h3 style='text-align: center;'>Histograms of Each Feature with KDE Plots</h3>",
+            unsafe_allow_html=True,
+        )
