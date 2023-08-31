@@ -198,7 +198,7 @@ def generate_heat_map(pearson_corr: pd.DataFrame, fig_name: str = "heat_map") ->
 
     else:
         # Create a new matplotlib figure
-        plt.figure(figsize=(12, 10))
+        plt.figure(figsize=(12.8, 9.6))
 
         # Generate the heatmap
         sns.heatmap(
@@ -212,6 +212,9 @@ def generate_heat_map(pearson_corr: pd.DataFrame, fig_name: str = "heat_map") ->
             xticklabels=pearson_corr.columns,
             cmap="coolwarm",
         )
+        plt.xticks(rotation=90)
+        plt.yticks(rotation=0)
+
         heat_map = plt.gcf()
         heat_map.savefig(image_file)
         st.pyplot(heat_map, clear_figure=True)
