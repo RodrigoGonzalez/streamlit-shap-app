@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 import shap
 import streamlit as st
-from matplotlib import pyplot as plt
 from streamlit_shap import st_shap
 
 matplotlib.use("Agg")
@@ -134,6 +133,8 @@ def individual_tree_shap_plots(
         help="Slide to select number of observations to visually inspect",
     )
 
+    # forced_plot = plt.gcf()
+
     st_shap(
         shap.force_plot(
             base_value=explainer.expected_value,
@@ -152,6 +153,9 @@ def individual_tree_shap_plots(
             contribution_threshold=0.05,
         )
     )
+
+    # if forced_plot is not None:
+    #     st.pyplot(forced_plot, clear_figure=True)
 
     st.markdown("### Waterfall SHAP Plot")
 
@@ -174,8 +178,10 @@ def individual_tree_shap_plots(
         )
 
         # Display the matplotlib figure in Streamlit
-        waterfall_fig = plt.gcf()
-        st.pyplot(waterfall_fig, clear_figure=True)
+        # waterfall_fig = plt.gcf()
+
+        if waterfall_fig is not None:
+            st.pyplot(waterfall_fig, clear_figure=True)
 
         st.markdown(
             "Where $E[f(x)]$ is the Expected Value of the model output for the "
