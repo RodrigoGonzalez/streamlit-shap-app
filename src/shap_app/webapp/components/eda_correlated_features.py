@@ -120,7 +120,7 @@ def plot_scaled_reg_plots(
     if os.path.exists(image_file):
         st.image(
             image_file,
-            caption=("Regression Analysis of Scaled Housing Features vs. Median Home Value"),
+            caption="Regression Analysis of Scaled Housing Features vs. Median Home Value",
             use_column_width=True,
         )
 
@@ -142,7 +142,7 @@ def plot_scaled_reg_plots(
                 color="#003153",
                 scatter_kws={"s": 10, "alpha": 0.4, "linewidths": 0.5},
             )
-        plt.tight_layout(pad=0.4, w_pad=0.25, h_pad=2.5)
+        plt.tight_layout(pad=0.4, w_pad=1.0, h_pad=2.5)
         reg_plots = plt.gcf()
         reg_plots.savefig(image_file)
         st.pyplot(reg_plots, clear_figure=True)
