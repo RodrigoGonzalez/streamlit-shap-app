@@ -20,7 +20,7 @@ def bivariate_analysis_corr_feats(dataset: pd.DataFrame) -> None:
     """
     st.markdown(
         """
-        ### Bivariate Analysis of Correlated Features
+        ## Bivariate Analysis of Correlated Features
 
         We can use a scatter plot to visualize the relationship between two
         features. This helps us understand how the features are related to each
@@ -81,7 +81,9 @@ def bivariate_analysis_corr_feats(dataset: pd.DataFrame) -> None:
          ratio), RM (average number of rooms), TAX (property tax rate),
          DIS (weighted distances to employment centers), and AGE (proportion of
          owner-occupied units built prior to 1940)—and the Median Home Value
-         (TARGET). The features have been scaled using Min-Max scaling for
+         (TARGET).
+
+         The features have been scaled using Min-Max scaling for
          better comparability. Each subplot provides a linear regression fit to
          indicate the trend between the feature and the target.
         """
@@ -118,7 +120,7 @@ def plot_scaled_reg_plots(
     if os.path.exists(image_file):
         st.image(
             image_file,
-            caption=("Regression Analysis of Scaled Housing Features vs. Median " "Home Value"),
+            caption=("Regression Analysis of Scaled Housing Features vs. Median Home Value"),
             use_column_width=True,
         )
 

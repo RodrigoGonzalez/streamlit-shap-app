@@ -50,6 +50,8 @@ with st.sidebar:
     )
 
     individual_datapoints = "#visualizing-individual-data-points-and-shap-values-using-tree-shap"
+    outliers = "#removing-outliers-and-their-impact-on-machine-learning-models"
+    bivariate_corr = "#bivariate-analysis-of-correlated-features"
     st.markdown(
         f"""
         ##  Content Directory
@@ -61,6 +63,9 @@ with st.sidebar:
             - [Visualize the Data to Gain Insights](#visualize-the-data-to-gain-insights)
             - [Univariate Analysis](#univariate-analysis)
             - [Bivariate Analysis](#bivariate-analysis)
+            - [Removing Outliers and Their Impact on Machine Learning Models]({outliers})
+            - [Pairwise Feature Correlations](#pairwise-feature-correlations)
+            - [Bivariate Analysis of Correlated Features]({bivariate_corr})
         - [SHAP Introduction](#shap-shapley-additive-explanations)
         - [Visualizing SHAP Values](#visualizing-shap-values-using-tree-shap)
         - [Visualizing Individual Data Points]({individual_datapoints})
@@ -221,7 +226,7 @@ st.markdown("---")
 
 
 # EDA Visualization
-st.markdown("### Visualize the Data to Gain Insights")
+st.markdown("# Visualize the Data to Gain Insights")
 visualize_data_introduction(st.session_state["df"])
 # with st.expander("Visualize Individual Features with Histograms"):
 #     # Visualize all features and target
@@ -230,7 +235,10 @@ st.markdown("---")
 
 
 feature_analysis(st.session_state["df_masked"])
-with st.expander("Detailed Correlation Information"):
+with st.expander(
+    "### Additional Detailed Information on Correlations and the Variants of "
+    "Correlation Coefficients"
+):
     generate_correlation_tables(st.session_state["df_masked"])
 bivariate_analysis_corr_feats(st.session_state["df_masked"])
 

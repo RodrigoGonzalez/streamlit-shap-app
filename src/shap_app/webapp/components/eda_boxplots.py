@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -44,17 +46,17 @@ def box_plots_summary(dataset: pd.DataFrame) -> None:
     """
     st.markdown(
         """
-            Box plots are a great way to visualize the distribution of a feature.
-            They provide a quick and easy way to visualize the range, median,
-            quartiles, and outliers in the data. The box represents the inter-quartile
-            range (IQR), which is the range between the first and third quartiles.
-            The line in the middle of the box represents the median. The whiskers
-            represent the range of the data, excluding outliers. Outliers are
-            represented by dots outside the whiskers.
+        Box plots are a great way to visualize the distribution of a feature.
+        They provide a quick and easy way to visualize the range, median,
+        quartiles, and outliers in the data. The box represents the interquartile
+        range (IQR), which is the range between the first and third quartiles.
+        The line in the middle of the box represents the median. The whiskers
+        represent the range of the data, excluding outliers. Outliers are
+        represented by dots outside the whiskers.
 
-            It looks like we have some outliers in the dataset. Let's take a closer
-            look at them:
-            """
+        It looks like we have some outliers in the dataset. Let's take a closer
+        look at them:
+        """
     )
     # Calculate the number of outliers in each column
     outliers = calculate_outliers_using_iqr(dataset)
@@ -97,7 +99,7 @@ def calculate_outliers_percent_from_outliers(
 def calculate_outliers_using_iqr(dataset: pd.DataFrame) -> pd.Series:
     """
     Calculate the number of outliers in each column of a dataset using the
-    inter-quartile range (IQR) method.
+    interquartile range (IQR) method.
 
     Parameters
     ----------
@@ -119,7 +121,7 @@ def calculate_outliers_using_iqr(dataset: pd.DataFrame) -> pd.Series:
     )
 
 
-def create_visualization_box_plots(dataset: pd.DataFrame) -> None:
+def create_visualization_box_plots(dataset: pd.DataFrame, fig_name: str = "box_plots") -> None:
     """
     Create box plots for each feature in the dataset.
 
@@ -128,18 +130,35 @@ def create_visualization_box_plots(dataset: pd.DataFrame) -> None:
     dataset : pd.DataFrame
         The dataset for which the box plots are to be generated. Each column
         represents a feature and each row represents an observation.
+    fig_name : str, optional
+        The name of the figure to save.
+        Default is "box_plots".
 
     Returns
     -------
     None
     """
-    # Create a new matplotlib figure
-    fig, axs = plt.subplots(ncols=7, nrows=get_num_rows_for_figures(dataset), figsize=(20, 10))
-    axs = axs.flatten()
-    for index, (k, v) in enumerate(dataset.items()):
-        sns.boxplot(y=k, data=dataset, ax=axs[index], palette="mako")
-    plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=5.0)
-    st.pyplot(fig, clear_figure=True)
-    st.markdown(
-        "<h3 style='text-align: center;'>Box Plots of Each Feature</h3>", unsafe_allow_html=True
-    )
+    image_file = f"assets/{fig_name}.png"
+
+    if os.path.exists(image_file):
+        st.image(
+            image_file,
+            caption="Box Plots of Each Feature",
+            use_column_width=True,
+        )
+
+    else:
+        # Create a new matplotlib figure
+        fig, axs = plt.subplots(ncols=7, nrows=get_num_rows_for_figures(dataset), figsize=(20, 10))
+        axs = axs.flatten()
+        for index, (k, v) in enumerate(dataset.items()):
+            sns.boxplot(y=k, data=dataset, ax=axs[index], palette="mako")
+        plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=5.0)
+
+        box_plot = plt.gcf()
+        box_plot.savefig(image_file)
+        st.pyplot(box_plot, clear_figure=True)
+
+        st.markdown(
+            "<h3 style='text-align: center;'>Box Plots of Each Feature</h3>", unsafe_allow_html=True
+        )
