@@ -7,6 +7,8 @@ import streamlit as st
 from matplotlib import pyplot as plt
 from streamlit_shap import st_shap
 
+from shap_app.webapp.chart_helpers import rerun_on_attribute_error
+
 matplotlib.use("Agg")
 
 
@@ -172,8 +174,7 @@ def individual_tree_shap_plots(
             feature.
             """
         )
-
-        plot_waterfall(shap_explanation, slider_value)
+        rerun_on_attribute_error(plot_waterfall, shap_explanation, slider_value)
 
     with explanation:
         st.markdown(
