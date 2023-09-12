@@ -2512,6 +2512,16 @@ carto = ["pydeck-carto"]
 jupyter = ["ipykernel (>=5.1.2)", "ipython (>=5.8.0)", "ipywidgets (>=7,<8)", "traitlets (>=4.3.2)"]
 
 [[package]]
+name = "pydotenv"
+version = "0.0.7"
+description = "A libray to write .env files"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pydotenv-0.0.7.tar.gz", hash = "sha256:5f6d78d3a7ed5124d7836bc1beeadd855dab4e2fdbea9338e6ff61dc1e46829f"},
+]
+
+[[package]]
 name = "pyflakes"
 version = "3.1.0"
 description = "passive checker of Python programs"
@@ -3914,4 +3924,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.12"
-content-hash = "2a19e38fbf6a7a8b101396d67433879ff8c473d46fa62ba977a36c534e11ce99"
+content-hash = "9a7a2769d7d1be7633376922f74a8b39dff2ab23cdffd59bfbfa280dbc675d0d"

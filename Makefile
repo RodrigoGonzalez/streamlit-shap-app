@@ -85,6 +85,10 @@ freeze-deps:
 
 ##@ Development
 
+load-env:  ## Load environment variables
+	# add to main application
+	python -c "from dotenv import load_dotenv; load_dotenv()"
+
 add-all:  ## Add all files to git
 	# not added to `pre-commit-tool` in order to prevent unwanted behavior when running in workflows
 	git add -A

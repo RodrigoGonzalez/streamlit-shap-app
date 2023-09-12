@@ -87,6 +87,8 @@ lightgbm = "^4.0.0"
 setuptools = "^68.1.2"
 numba = "^0.57.1"
 seaborn = "^0.12.2"
+pydotenv = "^0.0.7"
+python-dotenv = "^1.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
