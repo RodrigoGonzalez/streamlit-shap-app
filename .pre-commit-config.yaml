@@ -96,6 +96,15 @@ repos:
     types: [python]
     stages: [commit, manual, push]
 
+#- id: newrelic
+#  name: newrelic
+#  entry: poetry run newrelic-admin validate-config newrelic.ini
+#  language: system
+#  pass_filenames: false
+#  require_serial: false
+#  verbose: true
+#  stages: [commit, manual, push]
+
 #  - id: mypy
 #    name: mypy
 #    entry: poetry run mypy --install-types --non-interactive --sqlite-cache src
