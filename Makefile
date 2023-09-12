@@ -106,6 +106,12 @@ bump:  ## Bump version and update changelog
 
 .PHONY: pre-commit pre-commit-tool commit bump
 
+check-newrelic:  ## Check New Relic configuration
+	poetry run newrelic-admin validate-config newrelic.ini
+
+run-newrelic:  ## Run New Relic
+	poetry run NEW_RELIC_CONFIG_FILE=newrelic.ini newrelic-admin run-program shap-app
+
 # =============================================================================
 # TESTING
 # =============================================================================
