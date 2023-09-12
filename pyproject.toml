@@ -99,6 +99,7 @@ pyupgrade = "^3.10.1"
 flake8 = "^6.1.0"
 commitizen = "^3.7.0"
 pip-tools = "^7.3.0"
+newrelic = "^9.0.0"
 
 
 [tool.poetry.group.mypy.dependencies]
