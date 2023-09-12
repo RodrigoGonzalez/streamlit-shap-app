@@ -2,6 +2,30 @@
 
 <!--next-version-placeholder-->
 
+## v0.5.1 (2023-09-12)
+
+### Fix
+
+- **catching-weird-attribute-error-in-individual-waterfall-plots**: this will simple run the function again, for some reason that fixes the issue (#69)
+- **main-app**: fix parsing issue (#62)
+- **waterfall-still**: update waterfall chart (#61)
+- **shap-single**: continue to try to fix rendering issue (#60)
+- **waterfall-plot**: fix rendering issue due to index error  @RodrigoGonzalez (#58)
+- **waterfall-plots**: fix rendering issues (#57)
+- **waterfall-shap**: fix rendering issue (#53)
+
+### Refactor
+
+- **scaled-plots**: updated subplot width, the subplots were a li… (#68)
+- **charts**: update chart sizes (#67)
+- **main-app**: update copyright (#66)
+- **main-app**: small formatting changes (#65)
+- **introduction**: update introduction to better explain what XAI is (#64)
+- **tree-shap-plots**: update default slider value for individual plots (#63)
+- **shap-singl**: update docstrings waterfall chart (#59)
+- **gitignore**: update gitignore to include heat map (#56)
+- **images**: upload saved images for charts (#54)
+
 ## v0.5.0 (2023-08-31)
 
 ### Feat
