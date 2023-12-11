@@ -133,7 +133,7 @@ patsy==0.5.3
     # via statsmodels
 pdfkit==1.0.0
     # via shap-app (pyproject.toml)
-pillow==9.5.0
+pillow==10.0.1
     # via
     #   matplotlib
     #   streamlit
