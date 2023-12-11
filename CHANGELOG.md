@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.5.2 (2023-12-11)
+
+### Refactor
+
+- **webapp**: update components (#89)
+
 ## v0.5.1 (2023-09-12)
 
 ### Fix
