@@ -167,7 +167,11 @@ def main_shap_plot() -> None:
     )
     st.markdown(
         """
-        The interactive graph allows you to select your Y and X values,
-        and dynamically generate plots to understand the model
+        The interactive graph provided here allows you to select specific Y and X values,
+        and dynamically generate plots. This feature aids in understanding the underlying
+        model by visualizing the relationships between variables and their impact on the
+        model's predictions. By interacting with the graph, you can gain insights into
+        how changes in the input variables influence the output, thereby providing a
+        deeper understanding of the model's behavior.
         """
     )

@@ -133,7 +133,7 @@ patsy==0.5.3
     # via statsmodels
 pdfkit==1.0.0
     # via shap-app (pyproject.toml)
-pillow==10.0.1
+pillow==9.5.0
     # via
     #   matplotlib
     #   streamlit
@@ -155,6 +155,8 @@ pydantic-settings==2.0.3
     # via shap-app (pyproject.toml)
 pydeck==0.8.0
     # via streamlit
+pydotenv==0.0.7
+    # via shap-app (pyproject.toml)
 pygments==2.16.1
     # via rich
 pympler==1.0.1
@@ -170,7 +172,9 @@ python-dateutil==2.8.2
 python-decouple==3.8
     # via streamlit-aggrid
 python-dotenv==1.0.0
-    # via pydantic-settings
+    # via
+    #   pydantic-settings
+    #   shap-app (pyproject.toml)
 pytz==2023.3
     # via pandas
 pytz-deprecation-shim==0.1.0.post0
