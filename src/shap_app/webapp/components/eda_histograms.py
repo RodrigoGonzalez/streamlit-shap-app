@@ -79,7 +79,7 @@ def create_visualization_histogram_plots(
         )
 
     else:
-        fig, axs = plt.subplots(ncols=7, nrows=get_num_rows_for_figures(dataset), figsize=(20, 10))
+        fig, axs = plt.subplots(ncols=7, nrows=get_num_rows_for_figures(dataset), figsize=(16, 8))
         axs = axs.ravel()
         for index, column in enumerate(dataset.columns):
             sns.histplot(dataset[column], ax=axs[index], kde=True, color="#003153")

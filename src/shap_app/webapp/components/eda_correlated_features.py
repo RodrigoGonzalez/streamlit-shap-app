@@ -131,7 +131,7 @@ def plot_scaled_reg_plots(
         x = dataset.loc[:, columns]
         y = dataset["TARGET"]
         df = pd.DataFrame(data=min_max_scaler.fit_transform(x), columns=columns)
-        fig, axs = plt.subplots(ncols=3, nrows=get_num_rows_for_figures(x, 3), figsize=(24, 8))
+        fig, axs = plt.subplots(ncols=3, nrows=get_num_rows_for_figures(x, 3), figsize=(18, 6))
         axs = axs.flatten()
         for i, k in enumerate(columns):
             sns.regplot(

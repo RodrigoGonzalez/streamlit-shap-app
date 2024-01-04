@@ -124,7 +124,7 @@ def raw_dataset_insights(dataset: pd.DataFrame) -> None:
 
     # Generate the SHAP dependence plot
     num_bins = int(np.sqrt(dataset.shape[0]))
-    dataset.hist(bins=num_bins, figsize=(12, 12), ax=ax)
+    dataset.hist(bins=num_bins, figsize=(6, 6), ax=ax)
 
     # Display the matplotlib figure in Streamlit
     st.pyplot(fig, clear_figure=True)
