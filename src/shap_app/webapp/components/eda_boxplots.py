@@ -149,7 +149,7 @@ def create_visualization_box_plots(dataset: pd.DataFrame, fig_name: str = "box_p
 
     else:
         # Create a new matplotlib figure
-        fig, axs = plt.subplots(ncols=7, nrows=get_num_rows_for_figures(dataset), figsize=(20, 10))
+        fig, axs = plt.subplots(ncols=7, nrows=get_num_rows_for_figures(dataset), figsize=(16, 8))
         axs = axs.flatten()
         for index, (k, v) in enumerate(dataset.items()):
             sns.boxplot(y=k, data=dataset, ax=axs[index], palette="mako")
