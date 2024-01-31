@@ -41,7 +41,7 @@ cython==3.0.2
     # via shap-app (pyproject.toml)
 feature-engine==1.6.1
     # via shap-app (pyproject.toml)
-fonttools==4.42.1
+fonttools==4.43.0
     # via matplotlib
 gitdb==4.0.10
     # via gitpython
