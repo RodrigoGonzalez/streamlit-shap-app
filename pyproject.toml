@@ -48,23 +48,23 @@ shap-app = 'shap_app.__main__:cli'
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
-streamlit = "^1.29.0"
+streamlit = "^1.30.0"
 streamlit-aggrid = "^0.3.4.post3"
-streamlit-option-menu = "^0.3.6"
+streamlit-option-menu = "^0.3.12"
 streamlit-shap = "^1.0.2"
-pydantic = "^2.5.3"
+pydantic = "^2.6.0"
 llvmlite = "^0.40.1"
 #pyarrow = "^12.0.1"
 numpy = ">=1.21,<1.25"
-pandas = "^2.1.4"
+pandas = "^2.2.0"
 shap = "^0.42.1"
-scipy = "^1.11.4"
+scipy = "^1.12.0"
 statsmodels = "^0.14.1"
-scikit-learn = "^1.3.2"
+scikit-learn = "^1.4.0"
 feature-engine = "^1.6.2"
 xgboost = "^1.7.6"
 catboost = "^1.2.2"
-protobuf = "^4.25.1"
+protobuf = "^4.25.2"
 #google-api-python-client = "^2.97.0"
 #google-auth = "^2.22.0"
 #google-auth-httplib2 = "^0.1.0"
@@ -82,13 +82,10 @@ strictyaml = "^1.7.3"
 cmake = "^3.28.1"
 matplotlib = "^3.8.2"
 typer = "^0.9.0"
-cython = "^3.0.7"
-lightgbm = "^4.2.0"
-setuptools = "^68.2.2"
+lightgbm = "^4.3.0"
 numba = "^0.57.1"
 seaborn = "^0.12.2"
-pydotenv = "^0.0.7"
-python-dotenv = "^1.0.0"
+python-dotenv = "^1.0.1"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -101,7 +98,9 @@ pyupgrade = "^3.15.0"
 flake8 = "^6.1.0"
 commitizen = "*"
 pip-tools = "^7.3.0"
-newrelic = "^9.3.0"
+newrelic = "^9.6.0"
+setuptools = "^68.2.2"
+cython = "^3.0.8"
 
 
 [tool.poetry.group.mypy.dependencies]
@@ -119,7 +118,7 @@ pytest-randomly = "*"
 
 [tool.poetry.group.docs.dependencies]
 mkdocs = "^1.5.3"
-mkdocs-material = "^9.5.3"
+mkdocs-material = "^9.5.6"
 mkdocstrings = "^0.22.0"
 
 
