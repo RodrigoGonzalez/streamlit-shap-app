@@ -145,7 +145,7 @@ protobuf==4.24.2
     #   streamlit
 pyarrow==14.0.1
     # via streamlit
-pydantic==2.3.0
+pydantic==2.4.0
     # via
     #   pydantic-settings
     #   shap-app (pyproject.toml)
