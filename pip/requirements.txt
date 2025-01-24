@@ -251,7 +251,7 @@ toml==0.10.2
     # via streamlit
 toolz==0.12.0
     # via altair
-tornado==6.3.3
+tornado==6.4.2
     # via streamlit
 tqdm==4.66.3
     # via shap
@@ -270,7 +270,7 @@ tzdata==2023.3
     #   pytz-deprecation-shim
 tzlocal==4.3.1
     # via streamlit
-urllib3==2.0.7
+urllib3==2.2.2
     # via requests
 validators==0.21.2
     # via streamlit
