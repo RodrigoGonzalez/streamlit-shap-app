@@ -53,7 +53,7 @@ idna==3.7
     # via requests
 importlib-metadata==6.8.0
     # via streamlit
-jinja2==3.1.4
+jinja2==3.1.5
     # via
     #   altair
     #   pydeck
@@ -145,7 +145,7 @@ protobuf==4.24.2
     #   streamlit
 pyarrow==14.0.1
     # via streamlit
-pydantic==2.3.0
+pydantic==2.4.0
     # via
     #   pydantic-settings
     #   shap-app (pyproject.toml)
@@ -251,7 +251,7 @@ toml==0.10.2
     # via streamlit
 toolz==0.12.0
     # via altair
-tornado==6.3.3
+tornado==6.4.2
     # via streamlit
 tqdm==4.66.3
     # via shap
@@ -278,7 +278,7 @@ vega-datasets==0.9.0
     # via shap-app (pyproject.toml)
 xgboost==1.7.6
     # via shap-app (pyproject.toml)
-zipp==3.16.2
+zipp==3.19.1
     # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
