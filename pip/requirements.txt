@@ -225,7 +225,7 @@ statsmodels==0.14.0
     # via
     #   feature-engine
     #   shap-app (pyproject.toml)
-streamlit==1.30.0
+streamlit==1.37.0
     # via
     #   shap-app (pyproject.toml)
     #   streamlit-aggrid
