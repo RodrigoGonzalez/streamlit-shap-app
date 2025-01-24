@@ -99,7 +99,7 @@ flake8 = "^6.1.0"
 commitizen = "*"
 pip-tools = "^7.3.0"
 newrelic = "^9.6.0"
-setuptools = "^68.2.2"
+setuptools = ">=68.2.2,<71.0.0"
 cython = "^3.0.8"
 
 
