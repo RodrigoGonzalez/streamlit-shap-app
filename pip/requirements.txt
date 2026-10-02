@@ -41,15 +41,15 @@ cython==3.0.2
     # via shap-app (pyproject.toml)
 feature-engine==1.6.1
     # via shap-app (pyproject.toml)
-fonttools==4.43.0
+fonttools==4.60.2
     # via matplotlib
 gitdb==4.0.10
     # via gitpython
-gitpython==3.1.59
+gitpython==3.1.62
     # via streamlit
 graphviz==0.20.1
     # via catboost
-idna==3.10
+idna==3.15
     # via requests
 importlib-metadata==6.8.0
     # via streamlit
@@ -67,7 +67,7 @@ jsonschema-specifications==2023.7.1
     # via jsonschema
 kiwisolver==1.4.5
     # via matplotlib
-lightgbm==4.6.0
+lightgbm==4.7.0
     # via shap-app (pyproject.toml)
 llvmlite==0.40.1
     # via
@@ -139,7 +139,7 @@ pillow==12.3.0
     #   streamlit
 plotly==5.16.1
     # via catboost
-protobuf==4.24.2
+protobuf==5.29.6
     # via
     #   shap-app (pyproject.toml)
     #   streamlit
@@ -157,7 +157,7 @@ pydeck==0.8.0
     # via streamlit
 pydotenv==0.0.7
     # via shap-app (pyproject.toml)
-pygments==2.16.1
+pygments==2.20.0
     # via rich
 pympler==1.0.1
     # via streamlit
@@ -171,7 +171,7 @@ python-dateutil==2.8.2
     #   strictyaml
 python-decouple==3.8
     # via streamlit-aggrid
-python-dotenv==1.0.0
+python-dotenv==1.2.2
     # via
     #   pydantic-settings
     #   shap-app (pyproject.toml)
@@ -183,7 +183,7 @@ referencing==0.30.2
     # via
     #   jsonschema
     #   jsonschema-specifications
-requests==2.32.3
+requests==2.33.0
     # via streamlit
 rich==13.5.2
     # via streamlit
@@ -225,7 +225,7 @@ statsmodels==0.14.0
     # via
     #   feature-engine
     #   shap-app (pyproject.toml)
-streamlit==1.54.0
+streamlit==1.65.0
     # via
     #   shap-app (pyproject.toml)
     #   streamlit-aggrid
@@ -251,7 +251,7 @@ toml==0.10.2
     # via streamlit
 toolz==0.12.0
     # via altair
-tornado==6.5.8
+tornado==6.5.9
     # via streamlit
 tqdm==4.67.1
     # via shap
@@ -270,7 +270,7 @@ tzdata==2023.3
     #   pytz-deprecation-shim
 tzlocal==4.3.1
     # via streamlit
-urllib3==2.4.0
+urllib3==2.8.0
     # via requests
 validators==0.21.2
     # via streamlit
