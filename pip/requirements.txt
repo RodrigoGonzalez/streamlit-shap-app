@@ -139,7 +139,7 @@ pillow==12.3.0
     #   streamlit
 plotly==5.16.1
     # via catboost
-protobuf==5.29.6
+protobuf==7.36.2
     # via
     #   shap-app (pyproject.toml)
     #   streamlit
@@ -171,7 +171,7 @@ python-dateutil==2.8.2
     #   strictyaml
 python-decouple==3.8
     # via streamlit-aggrid
-python-dotenv==1.2.2
+python-dotenv==1.2.4
     # via
     #   pydantic-settings
     #   shap-app (pyproject.toml)
@@ -251,7 +251,7 @@ toml==0.10.2
     # via streamlit
 toolz==0.12.0
     # via altair
-tornado==6.5.9
+tornado==6.5.10
     # via streamlit
 tqdm==4.67.1
     # via shap
